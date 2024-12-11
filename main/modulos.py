@@ -1,8 +1,10 @@
 import reflex as rx
 from rxconfig import config
 
-
+# ----------------------------------
 # -- BARRA DE DESPLAZAMIENTO MENU --
+# ----------------------------------
+
 def sidebar_item(
     text: str, icon: str, href: str
 ) -> rx.Component:
@@ -203,7 +205,10 @@ def sidebar_bottom_profile() -> rx.Component:
         ),
     )
 
+# -------------------
 # -- MENU DE LOGIN --
+# -------------------
+
 
 def login_multiple_thirdparty() -> rx.Component:
     return rx.card(
@@ -321,7 +326,10 @@ def login_multiple_thirdparty() -> rx.Component:
         width="100%",
     )
 
+# ----------------
 # -- BANNER UNO --
+# ----------------
+
 class TopBannerGradient(rx.ComponentState):
     hide: bool = False
 
@@ -376,7 +384,10 @@ class TopBannerGradient(rx.ComponentState):
         )
 top_banner_gradient = TopBannerGradient.create
 
+# ----------------
 # -- BANNER DOS --
+# ----------------
+""" Este bannewr brinda la posibilidad de que el usuario cargue su email y reciba propuestas de nuestra web."""
 class TopBannerNewsletter(rx.ComponentState):
     hide: bool = False
 
@@ -447,7 +458,9 @@ class TopBannerNewsletter(rx.ComponentState):
 
 top_banner_newsletter = TopBannerNewsletter.create
 
+# -----------------
 # -- BANNER TRES --
+# -----------------
 class TopBannerSignup(rx.ComponentState):
     hide: bool = False
 
