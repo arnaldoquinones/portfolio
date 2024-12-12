@@ -69,61 +69,41 @@ def sidebar_bottom_profile() -> rx.Component:
                 ),
                 sidebar_items(),
                 rx.spacer(),
-                rx.vstack(
-                    rx.vstack(
-                        sidebar_item(
-                            "Settings", "settings", "/#"
-                        ),
-                        sidebar_item(
-                            "Log out", "log-out", "/#"
-                        ),
-                        spacing="1",
-                        width="100%",
+                rx.hstack(
+                    rx.icon_button(
+                        rx.icon("user"),
+                        size="3",
+                        radius="full",
                     ),
-                    rx.divider(),
-                    rx.hstack(
-                        rx.icon_button(
-                            rx.icon("user"),
-                            size="3",
-                            radius="full",
-                        ),
-                        rx.vstack(
-                            rx.box(
-                                rx.text(
-                                    "My account",
-                                    size="3",
-                                    weight="bold",
-                                ),
-                                rx.text(
-                                    "user@reflex.dev",
-                                    size="2",
-                                    weight="medium",
-                                ),
-                                width="100%",
+                    rx.vstack(
+                        rx.box(
+                            rx.text(
+                                "My account",
+                                size="3",
+                                weight="bold",
                             ),
-                            spacing="0",
-                            align="start",
-                            justify="start",
+                            rx.text(
+                                "user@reflex.dev",
+                                size="2",
+                                weight="medium",
+                            ),
                             width="100%",
                         ),
-                        padding_x="0.5rem",
-                        align="center",
+                        spacing="0",
+                        align="start",
                         justify="start",
                         width="100%",
                     ),
+                    padding_x="0.5rem",
+                    align="center",
+                    justify="start",
                     width="100%",
-                    spacing="5",
                 ),
                 spacing="5",
-                # position="fixed",
-                # left="0px",
-                # top="0px",
-                # z_index="5",
                 padding_x="1em",
                 padding_y="1.5em",
                 bg=rx.color("accent", 3),
                 align="start",
-                # height="100%",
                 height="650px",
                 width="16em",
             ),
@@ -145,53 +125,34 @@ def sidebar_bottom_profile() -> rx.Component:
                             ),
                             sidebar_items(),
                             rx.spacer(),
-                            rx.vstack(
-                                rx.vstack(
-                                    sidebar_item(
-                                        "Settings",
-                                        "settings",
-                                        "/#",
-                                    ),
-                                    sidebar_item(
-                                        "Log out",
-                                        "log-out",
-                                        "/#",
-                                    ),
-                                    width="100%",
-                                    spacing="1",
+                            rx.hstack(
+                                rx.icon_button(
+                                    rx.icon("user"),
+                                    size="3",
+                                    radius="full",
                                 ),
-                                rx.divider(margin="0"),
-                                rx.hstack(
-                                    rx.icon_button(
-                                        rx.icon("user"),
-                                        size="3",
-                                        radius="full",
-                                    ),
-                                    rx.vstack(
-                                        rx.box(
-                                            rx.text(
-                                                "My account",
-                                                size="3",
-                                                weight="bold",
-                                            ),
-                                            rx.text(
-                                                "user@reflex.dev",
-                                                size="2",
-                                                weight="medium",
-                                            ),
-                                            width="100%",
+                                rx.vstack(
+                                    rx.box(
+                                        rx.text(
+                                            "My account",
+                                            size="3",
+                                            weight="bold",
                                         ),
-                                        spacing="0",
-                                        justify="start",
+                                        rx.text(
+                                            "user@reflex.dev",
+                                            size="2",
+                                            weight="medium",
+                                        ),
                                         width="100%",
                                     ),
-                                    padding_x="0.5rem",
-                                    align="center",
+                                    spacing="0",
                                     justify="start",
                                     width="100%",
                                 ),
+                                padding_x="0.5rem",
+                                align="center",
+                                justify="start",
                                 width="100%",
-                                spacing="5",
                             ),
                             spacing="5",
                             width="100%",
@@ -210,6 +171,7 @@ def sidebar_bottom_profile() -> rx.Component:
             padding="1em",
         ),
     )
+
 
 
 class State(rx.State):
