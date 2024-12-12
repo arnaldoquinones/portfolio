@@ -60,7 +60,7 @@ def sidebar_bottom_profile() -> rx.Component:
                         border_radius="25%",
                     ),
                     rx.heading(
-                        "Reflex", size="7", weight="bold"
+                        "My porfolio", size="7", weight="bold"
                     ),
                     align="center",
                     justify="start",
@@ -246,11 +246,24 @@ def index() -> rx.Component:
                 flex="1",
             ),
         ),
-        height="100vh",
-        width="100vw",
+        style={
+            "height": "100%",  # Asegura que el contenedor principal use todo el espacio
+            "width": "100%",
+        },
     )
-
 
 
 app = rx.App()
 app.add_page(index)
+app.stylesheets.append(
+    """
+    <style>
+    [data-testid="stAppViewContainer"] {
+        background: linear-gradient(135deg, #000000, #00008B);
+        background-attachment: fixed;  /* Fija el fondo */
+        background-size: cover;        /* Asegura que cubra toda el área */
+        min-height: 100vh;             /* Ajusta para contenido más largo */
+    }
+    </style>
+    """
+)
