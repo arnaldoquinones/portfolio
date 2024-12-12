@@ -246,24 +246,15 @@ def index() -> rx.Component:
                 flex="1",
             ),
         ),
+        height="100vh",
+        width="100vw",
         style={
-            "height": "100%",  # Asegura que el contenedor principal use todo el espacio
-            "width": "100%",
+            "background": "linear-gradient(135deg, #000000, #00008B)",
+            "backgroundAttachment": "fixed",  # Fija el fondo para que no se mueva al desplazarse
+            "backgroundSize": "cover",  # Asegura que cubra toda el área
         },
     )
 
 
 app = rx.App()
 app.add_page(index)
-app.stylesheets.append(
-    """
-    <style>
-    [data-testid="stAppViewContainer"] {
-        background: linear-gradient(135deg, #000000, #00008B);
-        background-attachment: fixed;  /* Fija el fondo */
-        background-size: cover;        /* Asegura que cubra toda el área */
-        min-height: 100vh;             /* Ajusta para contenido más largo */
-    }
-    </style>
-    """
-)
