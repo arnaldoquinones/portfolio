@@ -48,7 +48,7 @@ def sidebar_bottom_profile() -> rx.Component:
             rx.vstack(
                 rx.hstack(
                     rx.image(
-                        src="/logo.jpg",
+                        src="/logo.png",
                         width="2.25em",
                         height="auto",
                         border_radius="25%",
