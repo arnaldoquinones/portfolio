@@ -33,7 +33,7 @@ def sidebar_item(
 
 def sidebar_items() -> rx.Component:
     return rx.vstack(
-        sidebar_item("Dashboard", "layout-dashboard", "/#"),
+        sidebar_item("Dashboards", "layout-dashboard", "/#"),
         sidebar_item("Projects", "square-library", "/#"),
         sidebar_item("Analytics", "bar-chart-4", "/#"),
         sidebar_item("Messages", "mail", "/#"),
@@ -54,7 +54,7 @@ def sidebar_bottom_profile() -> rx.Component:
                         border_radius="25%",
                     ),
                     rx.heading(
-                        "Reflex", size="7", weight="bold"
+                        "My portfolio", size="6", weight="bold"
                     ),
                     align="center",
                     justify="start",
@@ -62,7 +62,7 @@ def sidebar_bottom_profile() -> rx.Component:
                     width="100%",
                 ),
                 sidebar_items(),
-                rx.spacer(),
+                 rx.spacer(),
                 rx.vstack(
                     rx.vstack(
                         sidebar_item(
@@ -384,79 +384,7 @@ class TopBannerGradient(rx.ComponentState):
         )
 top_banner_gradient = TopBannerGradient.create
 
-# ----------------
-# -- BANNER DOS --
-# ----------------
-""" Este bannewr brinda la posibilidad de que el usuario cargue su email y reciba propuestas de nuestra web."""
-class TopBannerNewsletter(rx.ComponentState):
-    hide: bool = False
 
-    @rx.event
-    def toggle(self):
-        self.hide = not self.hide
-
-    @classmethod
-    def get_component(cls, **props):
-        return rx.cond(
-            ~cls.hide,
-            rx.flex(
-                rx.text(
-                    "Join our newsletter",
-                    text_wrap="nowrap",
-                    weight="medium",
-                ),
-                rx.input(
-                    rx.input.slot(rx.icon("mail")),
-                    rx.input.slot(
-                        rx.icon_button(
-                            rx.icon(
-                                "arrow-right",
-                                padding="0.15em",
-                            ),
-                            cursor="pointer",
-                            radius="large",
-                            size="2",
-                            justify="end",
-                        ),
-                        padding_right="0",
-                    ),
-                    placeholder="Your email address",
-                    type="email",
-                    size="2",
-                    radius="large",
-                ),
-                rx.icon(
-                    "x",
-                    cursor="pointer",
-                    justify="end",
-                    flex_shrink=0,
-                    on_click=cls.toggle,
-                ),
-                wrap="nowrap",
-                # position="fixed",
-                flex_direction=["column", "row", "row"],
-                justify_content=["start", "space-between"],
-                width="100%",
-                # top="0",
-                spacing="2",
-                align_items=["start", "center", "center"],
-                left="0",
-                # z_index="50",
-                padding="1rem",
-                background=rx.color("accent", 4),
-                border_radius="10px",
-                **props,
-            ),
-            # Remove this in production
-            rx.icon_button(
-                rx.icon("eye"),
-                cursor="pointer",
-                on_click=cls.toggle,
-            ),
-        )
-
-
-top_banner_newsletter = TopBannerNewsletter.create
 
 # -----------------
 # -- BANNER TRES --

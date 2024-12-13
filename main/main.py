@@ -7,183 +7,19 @@ from .modulos import sidebar_item
 # from .modulos TopBannerSignup
 # from .modulos top_banner_signup
 
-# ----------------------------------
-# -- BARRA DE DESPLAZAMIENTO MENU --
-# ----------------------------------
-
-def sidebar_item(
-    text: str, icon: str, href: str
-) -> rx.Component:
-    return rx.link(
-        rx.hstack(
-            rx.icon(icon),
-            rx.text(text, size="4"),
-            width="100%",
-            padding_x="0.5rem",
-            padding_y="0.75rem",
-            align="center",
-            style={
-                "_hover": {
-                    "bg": rx.color("accent", 4),
-                    "color": rx.color("accent", 11),
-                },
-                "border-radius": "0.5em",
-            },
-        ),
-        href=href,
-        underline="none",
-        weight="medium",
-        width="100%",
-    )
-
-
-def sidebar_items() -> rx.Component:
-    return rx.vstack(
-        sidebar_item("Dashboard", "layout-dashboard", "/#"),
-        sidebar_item("Projects", "square-library", "/#"),
-        sidebar_item("Analytics", "bar-chart-4", "/#"),
-        sidebar_item("Messages", "mail", "/#"),
-        spacing="1",
-        width="100%",
-    )
-
-
-def sidebar_bottom_profile() -> rx.Component:
-    return rx.box(
-        rx.desktop_only(
-            rx.vstack(
-                rx.hstack(
-                    rx.image(
-                        src="/logo.png",
-                        width="2.25em",
-                        height="auto",
-                        border_radius="25%",
-                    ),
-                    rx.heading(
-                        "My porfolio", size="7", weight="bold"
-                    ),
-                    align="center",
-                    justify="start",
-                    padding_x="0.5rem",
-                    width="100%",
-                ),
-                sidebar_items(),
-                rx.spacer(),
-                rx.hstack(
-                    rx.icon_button(
-                        rx.icon("user"),
-                        size="3",
-                        radius="full",
-                    ),
-                    rx.vstack(
-                        rx.box(
-                            rx.text(
-                                "My account",
-                                size="3",
-                                weight="bold",
-                            ),
-                            rx.text(
-                                "user@reflex.dev",
-                                size="2",
-                                weight="medium",
-                            ),
-                            width="100%",
-                        ),
-                        spacing="0",
-                        align="start",
-                        justify="start",
-                        width="100%",
-                    ),
-                    padding_x="0.5rem",
-                    align="center",
-                    justify="start",
-                    width="100%",
-                ),
-                spacing="5",
-                padding_x="1em",
-                padding_y="1.5em",
-                bg=rx.color("accent", 3),
-                align="start",
-                height="650px",
-                width="16em",
-            ),
-        ),
-        rx.mobile_and_tablet(
-            rx.drawer.root(
-                rx.drawer.trigger(
-                    rx.icon("align-justify", size=30)
-                ),
-                rx.drawer.overlay(z_index="5"),
-                rx.drawer.portal(
-                    rx.drawer.content(
-                        rx.vstack(
-                            rx.box(
-                                rx.drawer.close(
-                                    rx.icon("x", size=30)
-                                ),
-                                width="100%",
-                            ),
-                            sidebar_items(),
-                            rx.spacer(),
-                            rx.hstack(
-                                rx.icon_button(
-                                    rx.icon("user"),
-                                    size="3",
-                                    radius="full",
-                                ),
-                                rx.vstack(
-                                    rx.box(
-                                        rx.text(
-                                            "My account",
-                                            size="3",
-                                            weight="bold",
-                                        ),
-                                        rx.text(
-                                            "user@reflex.dev",
-                                            size="2",
-                                            weight="medium",
-                                        ),
-                                        width="100%",
-                                    ),
-                                    spacing="0",
-                                    justify="start",
-                                    width="100%",
-                                ),
-                                padding_x="0.5rem",
-                                align="center",
-                                justify="start",
-                                width="100%",
-                            ),
-                            spacing="5",
-                            width="100%",
-                        ),
-                        top="auto",
-                        right="auto",
-                        height="100%",
-                        width="20em",
-                        padding="1.5em",
-                        bg=rx.color("accent", 2),
-                    ),
-                    width="100%",
-                ),
-                direction="left",
-            ),
-            padding="1em",
-        ),
-    )
-
-
+from .modulos import sidebar_bottom_profile # Importar la barra lateral
+from .modulos import top_banner_gradient
+from .modulos import top_banner_signup
 
 class State(rx.State):
     """The app state."""
-
     ...
 
 
 def index() -> rx.Component:
     return rx.box(
         rx.hstack(
-            sidebar_bottom_profile(),  # Barra lateral integrada
+            sidebar_bottom_profile(),
             rx.container(
                 rx.color_mode.button(position="top-right"),
                 rx.vstack(
@@ -195,6 +31,8 @@ def index() -> rx.Component:
                         border_radius="50%",
                         alt="Foto de perfil",
                     ),
+                    top_banner_gradient(),
+                    top_banner_signup(),
                     rx.link(
                         rx.button("Go to my GitHub!"),
                         href="https://github.com/arnaldoquinones",
@@ -202,21 +40,20 @@ def index() -> rx.Component:
                     ),
                     spacing="5",
                     justify="center",
-                    min_height="85vh",
                 ),
                 padding="1em",
                 flex="1",
             ),
         ),
-        height="100vh",
+        min_height="100vh",  # Asegura que el fondo cubra al menos la pantalla completa
         width="100vw",
-        style={
-            "background": "linear-gradient(135deg, #000000, #00008B)",
-            "backgroundAttachment": "fixed",  # Fija el fondo para que no se mueva al desplazarse
-            "backgroundSize": "cover",  # Asegura que cubra toda el área
-        },
+        background="linear-gradient(to bottom, #000066, #000000)",  # Fondo degradado
+        overflow_y="auto",  # Permite desplazamiento vertical si es necesario
     )
 
 
+
+
+
 app = rx.App()
-app.add_page(index)
+app.add_page(index)  # Agregar la página principal
