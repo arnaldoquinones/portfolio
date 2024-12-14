@@ -1,4 +1,4 @@
-"""Pagina profesional de mis trabajos  Data Tech y resumen curricular"""
+"""Pagina profesional de mis trabajos  Data Tech y resumen curricular."""
 
 import reflex as rx
 
