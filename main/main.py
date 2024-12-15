@@ -1,5 +1,4 @@
 import reflex as rx
-import asyncio
 from rxconfig import config
 from .modulos import sidebar_bottom_profile
 from .about_me import about_me
