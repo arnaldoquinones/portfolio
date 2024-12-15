@@ -2,8 +2,6 @@ import reflex as rx
 import asyncio
 from rxconfig import config
 from .modulos import sidebar_bottom_profile
-from .modulos import top_banner_gradient
-from .modulos import top_banner_signup
 from .about_me import about_me
 from .skills import skills
 from .proyects import projects
