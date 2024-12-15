@@ -10,7 +10,7 @@ def proyects() -> rx.Component:
             sidebar_bottom_profile(),  # Barra lateral
             rx.container(
                 rx.vstack(
-                    rx.heading("Skills Page", size="3xl", color="white"),
+                    rx.heading("Proyects Page", size="3xl", color="white"),
                     rx.text(
                         "Those are my works.",
                         size="lg",
