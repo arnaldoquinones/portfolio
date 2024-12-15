@@ -56,6 +56,12 @@ def index() -> rx.Component:
                         href="https://github.com/arnaldoquinones",
                         is_external=True,
                     ),
+                    rx.link(
+                        rx.button("Go to my Linkedin!",
+                                  border_radius="20px"),
+                        href="https://www.linkedin.com/in/apquinones/",
+                        is_external=True,
+                    )
                     spacing="5",
                     justify="center",
                 ),
