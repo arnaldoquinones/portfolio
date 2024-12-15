@@ -48,14 +48,20 @@ def sidebar_bottom_profile() -> rx.Component:
         rx.desktop_only(
             rx.vstack(
                 rx.hstack(
-                    rx.image(
-                        src="/logo.png",
-                        width="2.25em",
-                        height="auto",
-                        border_radius="25%",
+                    rx.link(
+                        rx.image(
+                            src="/logo.png",
+                            width="2.25em",
+                            height="auto",
+                            border_radius="25%",
+                        ),
+                        href="./",  # Ruta a la página principal (main)
                     ),
-                    rx.heading(
-                        "My portfolio.", size="5", weight="bold"
+                    rx.link(
+                        rx.heading(
+                            "My portfolio.", size="5", weight="bold"
+                        ),
+                        href="./",  # Ruta a la página principal (main)
                     ),
                     align="center",
                     justify="start",
@@ -174,6 +180,7 @@ def sidebar_bottom_profile() -> rx.Component:
             padding="1em",
         ),
     )
+
 
 
 
