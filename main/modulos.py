@@ -37,7 +37,7 @@ def sidebar_items() -> rx.Component:
         sidebar_item("Projects", "square-library", "/#"),
         sidebar_item("Analytics", "bar-chart-4", "/#"),
         sidebar_item("Messages", "mail", "/#"),
-        spacing="1",
+        spacing="3",  # Espaciado ajustado (valores válidos: '0' a '9')
         width="100%",
     )
 
@@ -63,8 +63,7 @@ def sidebar_bottom_profile() -> rx.Component:
                     width="100%",
                 ),
                 sidebar_items(),
-                rx.spacer(),
-                rx.divider(),  # Línea separadora
+                rx.divider(margin_y="2"),  # Ajustado a un valor válido
                 rx.vstack(
                     rx.hstack(
                         rx.icon_button(
@@ -89,7 +88,6 @@ def sidebar_bottom_profile() -> rx.Component:
                                 ),
                                 width="100%",
                             ),
-                            spacing="0",
                             align="start",
                             justify="start",
                             width="100%",
@@ -100,9 +98,9 @@ def sidebar_bottom_profile() -> rx.Component:
                         width="100%",
                     ),
                     width="100%",
-                    spacing="5",
+                    spacing="2",  # Espaciado entre elementos inferiores
                 ),
-                spacing="5",
+                spacing="3",  # Espaciado general ajustado
                 padding_x="1em",
                 padding_y="1.5em",
                 bg=rx.color("accent", 3),
@@ -127,8 +125,7 @@ def sidebar_bottom_profile() -> rx.Component:
                                 width="100%",
                             ),
                             sidebar_items(),
-                            rx.spacer(),
-                            rx.divider(),  # Línea separadora
+                            rx.divider(margin_y="2"),  # Ajustado a un valor válido
                             rx.hstack(
                                 rx.icon_button(
                                     rx.icon("user"),
@@ -152,7 +149,6 @@ def sidebar_bottom_profile() -> rx.Component:
                                         ),
                                         width="100%",
                                     ),
-                                    spacing="0",
                                     justify="start",
                                     width="100%",
                                 ),
@@ -161,7 +157,7 @@ def sidebar_bottom_profile() -> rx.Component:
                                 justify="start",
                                 width="100%",
                             ),
-                            spacing="5",
+                            spacing="2",  # Espaciado entre los elementos inferiores
                             width="100%",
                         ),
                         top="auto",
@@ -178,6 +174,7 @@ def sidebar_bottom_profile() -> rx.Component:
             padding="1em",
         ),
     )
+
 
 
 
