@@ -62,6 +62,13 @@ def sidebar_bottom_profile() -> rx.Component:
                             "My portfolio.", size="5", weight="bold"
                         ),
                         href="./",  # Ruta a la página principal (main)
+                        style={
+                            "color": "white",  # Mantiene el color del texto en blanco
+                            "text-decoration": "none",  # Elimina subrayados
+                            "_hover": {
+                                "color": "white",  # Mantiene blanco al pasar el mouse
+                            },
+                        },
                     ),
                     align="center",
                     justify="start",
