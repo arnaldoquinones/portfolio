@@ -4,20 +4,28 @@ from .modulos import sidebar_bottom_profile
 
 
 def proyects() -> rx.Component:
-    """Página About Me."""
+    """Página Skills."""
     return rx.box(
-        rx.center(
-            rx.vstack(
-                rx.heading("About Me Page", size="3xl", color="white"),
-                rx.text(
-                    "Those are my works.",
-                    size="lg",
-                    color="gray.200",
-                    text_align="center",
+        rx.hstack(
+            sidebar_bottom_profile(),  # Barra lateral
+            rx.container(
+                rx.vstack(
+                    rx.heading("Skills Page", size="3xl", color="white"),
+                    rx.text(
+                        "Those are my works.",
+                        size="lg",
+                        color="gray.200",
+                        text_align="center",
+                    ),
+                    spacing="5",
+                    justify="center",
                 ),
+                padding="1em",
+                flex="1",
             ),
-            padding="2em",
         ),
         min_height="100vh",
+        width="100vw",
         background="linear-gradient(to bottom, #002266, #001122)",
+        overflow_y="auto",
     )
