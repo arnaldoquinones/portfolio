@@ -10,27 +10,14 @@ from .modulos import top_banner_signup
 # ---------------------------
 class State(rx.State):
     """The main application state."""
-    landingpage_text: str = ""
+    pass
+   
 
-    async def landingpage_update(self):
-        """Simulación de efecto de texto con animación de tipo escritura."""
-        while True:
-            for service in ["Music", "Poems", "Art", "Pictures"]:
-                if self.landingpage_text != "Discover my ":
-                    self.landingpage_text = "Discover my"
-                for char in service:
-                    await asyncio.sleep(0.2)
-                    self.landingpage_text += char
-                    yield
-                self.landingpage_text += "."
-                yield
-                await asyncio.sleep(1)
-                for char in range(len(service) + 1):
-                    await asyncio.sleep(0.09)
-                    self.landingpage_text = self.landingpage_text[:-1]
-                    yield
+# Con más de 24 años de experiencia en el Banco ICBC, he desempeñado roles tanto en el área administrativa como en el comercial, específicamente como oficial de negocios retail. Durante mi tiempo en administración, adquirí habilidades significativas en la preparación de informes utilizando SQL, contribuyendo así a la eficiencia operativa y la toma de decisiones informadas.
 
-# Con más de 24 años de experiencia en el Banco ICBC, he desempeñado roles tanto en el área administrativa como en el comercial.
+# Me gradué como Licenciado en Administración de Empresas por la Universidad de Buenos Aires, donde consolidé mi comprensión de estrategias empresariales y gestión eficaz de recursos. Me caracterizo por ser una persona proactiva, orientada a resultados y con un alto nivel de empatía hacia mis compañeros de equipo.
+
+# Mi enfoque meticuloso y pensante me ha permitido enfrentar desafíos complejos con soluciones innovadoras, siempre buscando optimizar procesos y mejorar la experiencia del cliente. Estoy entusiasmado por explorar nuevas oportunidades donde pueda aplicar mi experiencia y contribuir al éxito de proyectos empresariales ambiciosos.
 
 def index() -> rx.Component:
     """Componente principal que renderiza la vista principal de la app."""
@@ -40,7 +27,7 @@ def index() -> rx.Component:
             rx.container(
                 rx.color_mode.button(position="top-right"),
                 rx.vstack(
-                    rx.heading("Data scientist & Data analyst. ", size="9"),
+                    rx.heading("Data scientist & Data analyst.", size="9"),
                     rx.image(
                         src="https://github.com/arnaldoquinones/portfolio/blob/master/assets/foto_perfil.png?raw=true",
                         width="150px",
@@ -51,17 +38,15 @@ def index() -> rx.Component:
                     top_banner_gradient(),
                     top_banner_signup(),
                     rx.link(
-                        rx.button("Go to my GitHub!",
-                                  border_radius="20px"),
+                        rx.button("Go to my GitHub!", border_radius="20px"),
                         href="https://github.com/arnaldoquinones",
                         is_external=True,
                     ),
                     rx.link(
-                        rx.button("Go to my Linkedin!",
-                                  border_radius="20px"),
+                        rx.button("Go to my Linkedin!", border_radius="20px"),
                         href="https://www.linkedin.com/in/apquinones/",
                         is_external=True,
-                    )
+                    ),
                     spacing="5",
                     justify="center",
                 ),
@@ -74,6 +59,7 @@ def index() -> rx.Component:
         background="linear-gradient(to bottom, #000066, #000000)",
         overflow_y="auto",
     )
+
 
 
 app = rx.App()
