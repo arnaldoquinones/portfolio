@@ -5,9 +5,8 @@ from rxconfig import config
 # -- BARRA DE DESPLAZAMIENTO MENU --
 # ----------------------------------
 
-def sidebar_item(
-    text: str, icon: str, href: str
-) -> rx.Component:
+def sidebar_item(text: str, icon: str, href: str) -> rx.Component:
+    """Crea un elemento del menú lateral."""
     return rx.link(
         rx.hstack(
             rx.icon(icon),
@@ -32,6 +31,7 @@ def sidebar_item(
 
 
 def sidebar_items() -> rx.Component:
+    """Crea la lista principal de elementos del menú lateral."""
     return rx.vstack(
         sidebar_item("Dashboards", "layout-dashboard", "/#"),
         sidebar_item("Projects", "square-library", "/#"),
@@ -43,6 +43,7 @@ def sidebar_items() -> rx.Component:
 
 
 def sidebar_bottom_profile() -> rx.Component:
+    """Crea el perfil inferior de la barra lateral."""
     return rx.box(
         rx.desktop_only(
             rx.vstack(
@@ -62,19 +63,9 @@ def sidebar_bottom_profile() -> rx.Component:
                     width="100%",
                 ),
                 sidebar_items(),
-                 rx.spacer(),
+                rx.spacer(),
+                rx.divider(),  # Línea separadora
                 rx.vstack(
-                    rx.vstack(
-                        sidebar_item(
-                            "Settings", "settings", "/#"
-                        ),
-                        sidebar_item(
-                            "Log out", "log-out", "/#"
-                        ),
-                        spacing="1",
-                        width="100%",
-                    ),
-                    rx.divider(),
                     rx.hstack(
                         rx.icon_button(
                             rx.icon("user"),
@@ -84,14 +75,17 @@ def sidebar_bottom_profile() -> rx.Component:
                         rx.vstack(
                             rx.box(
                                 rx.text(
-                                    "My account",
+                                    "Made by",
                                     size="3",
                                     weight="bold",
                                 ),
-                                rx.text(
-                                    "user@reflex.dev",
+                                rx.link(
+                                    "Arnaldo Quiñones",
+                                    href="https://github.com/arnaldoquinones",
                                     size="2",
                                     weight="medium",
+                                    color="blue.500",
+                                    is_external=True,
                                 ),
                                 width="100%",
                             ),
@@ -109,15 +103,10 @@ def sidebar_bottom_profile() -> rx.Component:
                     spacing="5",
                 ),
                 spacing="5",
-                # position="fixed",
-                # left="0px",
-                # top="0px",
-                # z_index="5",
                 padding_x="1em",
                 padding_y="1.5em",
                 bg=rx.color("accent", 3),
                 align="start",
-                # height="100%",
                 height="650px",
                 width="16em",
             ),
@@ -139,53 +128,38 @@ def sidebar_bottom_profile() -> rx.Component:
                             ),
                             sidebar_items(),
                             rx.spacer(),
-                            rx.vstack(
-                                rx.vstack(
-                                    sidebar_item(
-                                        "Settings",
-                                        "settings",
-                                        "/#",
-                                    ),
-                                    sidebar_item(
-                                        "Log out",
-                                        "log-out",
-                                        "/#",
-                                    ),
-                                    width="100%",
-                                    spacing="1",
+                            rx.divider(),  # Línea separadora
+                            rx.hstack(
+                                rx.icon_button(
+                                    rx.icon("user"),
+                                    size="3",
+                                    radius="full",
                                 ),
-                                rx.divider(margin="0"),
-                                rx.hstack(
-                                    rx.icon_button(
-                                        rx.icon("user"),
-                                        size="3",
-                                        radius="full",
-                                    ),
-                                    rx.vstack(
-                                        rx.box(
-                                            rx.text(
-                                                "My account",
-                                                size="3",
-                                                weight="bold",
-                                            ),
-                                            rx.text(
-                                                "user@reflex.dev",
-                                                size="2",
-                                                weight="medium",
-                                            ),
-                                            width="100%",
+                                rx.vstack(
+                                    rx.box(
+                                        rx.text(
+                                            "Made by",
+                                            size="3",
+                                            weight="bold",
                                         ),
-                                        spacing="0",
-                                        justify="start",
+                                        rx.link(
+                                            "Arnaldo Quiñones",
+                                            href="https://github.com/arnaldoquinones",
+                                            size="2",
+                                            weight="medium",
+                                            color="blue.500",
+                                            is_external=True,
+                                        ),
                                         width="100%",
                                     ),
-                                    padding_x="0.5rem",
-                                    align="center",
+                                    spacing="0",
                                     justify="start",
                                     width="100%",
                                 ),
+                                padding_x="0.5rem",
+                                align="center",
+                                justify="start",
                                 width="100%",
-                                spacing="5",
                             ),
                             spacing="5",
                             width="100%",
@@ -204,6 +178,8 @@ def sidebar_bottom_profile() -> rx.Component:
             padding="1em",
         ),
     )
+
+
 
 # -------------------
 # -- MENU DE LOGIN --
