@@ -30,6 +30,7 @@ class State(rx.State):
                     self.landingpage_text = self.landingpage_text[:-1]
                     yield
 
+# Con más de 24 años de experiencia en el Banco ICBC, he desempeñado roles tanto en el área administrativa como en el comercial.
 
 def index() -> rx.Component:
     """Componente principal que renderiza la vista principal de la app."""
@@ -39,7 +40,7 @@ def index() -> rx.Component:
             rx.container(
                 rx.color_mode.button(position="top-right"),
                 rx.vstack(
-                    rx.heading("Welcome to my Professional web page!", size="9"),
+                    rx.heading("Data scientist & Data analyst. ", size="9"),
                     rx.image(
                         src="https://github.com/arnaldoquinones/portfolio/blob/master/assets/foto_perfil.png?raw=true",
                         width="150px",
