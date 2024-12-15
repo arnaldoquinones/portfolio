@@ -4,10 +4,11 @@ from rxconfig import config
 from .modulos import sidebar_bottom_profile
 from .modulos import top_banner_gradient
 from .modulos import top_banner_signup
+from .about_me import about_me
+from .skills import skills
+from .proyects import projects
 
-# ---------------------------
-# -- EFECTO TYPE WRITTING. --
-# ---------------------------
+
 class State(rx.State):
     """The main application state."""
     pass
@@ -35,8 +36,6 @@ def index() -> rx.Component:
                         border_radius="50%",
                         alt="Foto de perfil",
                     ),
-                    top_banner_gradient(),
-                    top_banner_signup(),
                     rx.link(
                         rx.button("Go to my GitHub!", border_radius="20px"),
                         href="https://github.com/arnaldoquinones",
@@ -60,7 +59,27 @@ def index() -> rx.Component:
         overflow_y="auto",
     )
 
-
-
 app = rx.App()
+
+# ---------------------------
+# -- ENLACES A LAS PAGINAS --
+# ---------------------------
+def main_page() -> rx.Component:
+    return rx.box(
+        rx.link("About Me", href="/about_me"),
+        rx.link("Skills", href="/skills"),
+        rx.link("Projects", href="/projects"),
+        rx.text("Welcome to my Portfolio", size="3xl", font_weight="bold"),
+        spacing="4",
+        align="center",
+        justify="center",
+        height="100vh",
+        bg="teal.100",
+    )
+
+# Add routes for the main page and subpages
+app.add_page(about_me, path="/about_me")
+app.add_page(skills, path="/skills")
+app.add_page(projects, path="/projects")
+
 app.add_page(index)  # Agregar la página principal
