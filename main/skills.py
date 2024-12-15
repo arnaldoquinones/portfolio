@@ -1,9 +1,7 @@
 import reflex as rx
-import asyncio
 from rxconfig import config
 from .modulos import sidebar_bottom_profile
-from .modulos import top_banner_gradient
-from .modulos import top_banner_signup
+
 
 def index() -> rx.Component:
     """Componente principal que renderiza la vista principal de la app."""
