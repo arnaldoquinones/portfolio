@@ -1,34 +1,6 @@
 import reflex as rx
-import asyncio
 from rxconfig import config
 from .modulos import sidebar_bottom_profile
-from .modulos import top_banner_gradient
-from .modulos import top_banner_signup
-
-# ---------------------------
-# -- EFECTO TYPE WRITTING. --
-# ---------------------------
-class State(rx.State):
-    """The main application state."""
-    landingpage_text: str = ""
-
-    async def landingpage_update(self):
-        """Simulación de efecto de texto con animación de tipo escritura."""
-        while True:
-            for service in ["Music", "Poems", "Art", "Pictures"]:
-                if self.landingpage_text != "Discover my ":
-                    self.landingpage_text = "Discover my"
-                for char in service:
-                    await asyncio.sleep(0.2)
-                    self.landingpage_text += char
-                    yield
-                self.landingpage_text += "."
-                yield
-                await asyncio.sleep(1)
-                for char in range(len(service) + 1):
-                    await asyncio.sleep(0.09)
-                    self.landingpage_text = self.landingpage_text[:-1]
-                    yield
 
 
 def index() -> rx.Component:
@@ -47,14 +19,14 @@ def index() -> rx.Component:
                         border_radius="50%",
                         alt="Foto de perfil",
                     ),
-                    top_banner_gradient(),
-                    top_banner_signup(),
-                    rx.link(
-                        rx.button("Go to my GitHub!",
-                                  border_radius="20px"),
-                        href="https://github.com/arnaldoquinones",
-                        is_external=True,
-                    ),
+                    # top_banner_gradient(),
+                    # top_banner_signup(),
+                    # rx.link(
+                    #     rx.button("Go to my GitHub!",
+                    #               border_radius="20px"),
+                    #     href="https://github.com/arnaldoquinones",
+                    #     is_external=True,
+                    # ),
                     spacing="5",
                     justify="center",
                 ),
