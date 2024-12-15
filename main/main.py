@@ -76,9 +76,9 @@ def main_page() -> rx.Component:
     )
 
 # Add routes for the main page and subpages.
-app.add_page(main_page, path="/")
-app.add_page(about_me, path="/about_me")
-app.add_page(skills, path="/skills")
-app.add_page(proyects, path="/proyects")
+app.add_page(main_page)
+app.add_page(about_me)
+app.add_page(skills)
+app.add_page(proyects)
 
 app.add_page(index)  # Agregar la página principal.
