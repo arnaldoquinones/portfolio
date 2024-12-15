@@ -33,11 +33,11 @@ def sidebar_item(text: str, icon: str, href: str) -> rx.Component:
 def sidebar_items() -> rx.Component:
     """Crea la lista principal de elementos del menú lateral."""
     return rx.vstack(
-        sidebar_item("Dashboards", "layout-dashboard", "/#"),
-        sidebar_item("Projects", "square-library", "/#"),
-        sidebar_item("Analytics", "bar-chart-4", "/#"),
-        sidebar_item("Messages", "mail", "/#"),
-        spacing="3",  # Espaciado ajustado (valores válidos: '0' a '9')
+        sidebar_item("About me", "layout-dashboard", "./about_me"),
+        sidebar_item("Proyects", "square-library", "./proyects"),
+        sidebar_item("Skills", "bar-chart-4", "./skills"),
+        sidebar_item("Messages", "mail", "./messages"),
+        spacing="3",  # Espaciado ajustado
         width="100%",
     )
 
