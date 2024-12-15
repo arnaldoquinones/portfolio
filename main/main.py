@@ -4,7 +4,7 @@ from rxconfig import config
 from .modulos import sidebar_bottom_profile
 from .about_me import about_me
 from .skills import skills
-from .proyects import projects
+from .proyects import proyects
 
 
 class State(rx.State):
@@ -66,7 +66,7 @@ def main_page() -> rx.Component:
     return rx.box(
         rx.link("About Me", href="/about_me"),
         rx.link("Skills", href="/skills"),
-        rx.link("Projects", href="/projects"),
+        rx.link("Projects", href="/proyects"),
         rx.text("Welcome to my Portfolio", size="3xl", font_weight="bold"),
         spacing="4",
         align="center",
@@ -79,6 +79,6 @@ def main_page() -> rx.Component:
 app.add_page(main_page, path="/")
 app.add_page(about_me, path="/about_me")
 app.add_page(skills, path="/skills")
-app.add_page(projects, path="/projects")
+app.add_page(proyects, path="/proyects")
 
 app.add_page(index)  # Agregar la página principal.
