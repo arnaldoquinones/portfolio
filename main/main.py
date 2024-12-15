@@ -27,7 +27,7 @@ def index() -> rx.Component:
             rx.container(
                 rx.color_mode.button(position="top-right"),
                 rx.vstack(
-                    rx.heading("Data scientist & Data analyst.", size="9"),
+                    rx.heading("Data scientist & Data analyst.", size="6"),
                     rx.image(
                         src="https://github.com/arnaldoquinones/portfolio/blob/master/assets/foto_perfil.png?raw=true",
                         width="150px",

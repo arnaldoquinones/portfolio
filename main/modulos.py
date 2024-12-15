@@ -54,7 +54,7 @@ def sidebar_bottom_profile() -> rx.Component:
                         border_radius="25%",
                     ),
                     rx.heading(
-                        "My portfolio.", size="6", weight="bold"
+                        "My portfolio.", size="5", weight="bold"
                     ),
                     align="center",
                     justify="start",
