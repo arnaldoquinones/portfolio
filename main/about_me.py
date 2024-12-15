@@ -8,6 +8,7 @@ def about_me() -> rx.Component:
     return rx.box(
         rx.center(
             rx.vstack(
+                sidebar_bottom_profile(),
                 rx.heading("About Me Page", size="3xl", color="white"),
                 rx.text(
                     "Hello! I am Arnaldo, a professional in data analysis, system design, and development.",

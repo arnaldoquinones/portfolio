@@ -8,7 +8,8 @@ def skills() -> rx.Component:
     return rx.box(
         rx.center(
             rx.vstack(
-                rx.heading("About Me Page", size="3xl", color="white"),
+                sidebar_bottom_profile(),
+                rx.heading("Skills Page", size="3xl", color="white"),
                 rx.text(
                     "Let me show you my skills.",
                     size="lg",
