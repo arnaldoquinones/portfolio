@@ -1,7 +1,7 @@
 import reflex as rx
 from rxconfig import config
 from .modulos import sidebar_bottom_profile
-from .about_me import about_me
+from .about_me import about
 from .skills import skills
 from .proyects import proyects
 
@@ -63,9 +63,9 @@ app = rx.App()
 # ---------------------------
 def main_page() -> rx.Component:
     return rx.box(
-        rx.link("About Me", href="/about_me"),
-        rx.link("Skills", href="/skills"),
-        rx.link("Projects", href="/proyects"),
+        rx.link("About Me", href="./about_me"),
+        rx.link("Skills", href="./skills"),
+        rx.link("Projects", href="./proyects"),
         rx.text("Welcome to my Portfolio", size="3xl", font_weight="bold"),
         spacing="4",
         align="center",
@@ -76,7 +76,7 @@ def main_page() -> rx.Component:
 
 # Add routes for the main page and subpages.
 app.add_page(main_page)
-app.add_page(about_me)
+app.add_page(about)
 app.add_page(skills)
 app.add_page(proyects)
 

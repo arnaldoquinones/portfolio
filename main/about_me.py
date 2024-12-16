@@ -3,14 +3,14 @@ from rxconfig import config
 from .modulos import sidebar_bottom_profile
 
 
-def about_me() -> rx.Component:
+def about() -> rx.Component:
     """Página About me."""
     return rx.box(
         rx.hstack(
             sidebar_bottom_profile(),  # Barra lateral
             rx.container(
                 rx.vstack(
-                    rx.heading("Proyects Page", size="3xl", color="white"),
+                    rx.heading("About me.", size="3xl", color="white"),
                     rx.text(
                         "Hello! I am Arnaldo, a professional in data analysis, system design, and development.",
                         size="lg",
