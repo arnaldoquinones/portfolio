@@ -11,6 +11,7 @@ class State(rx.State):
     pass
 
 
+
 # Con más de 24 años de experiencia en el Banco ICBC, he desempeñado roles tanto en el área administrativa como en el comercial, específicamente como oficial de negocios retail. Durante mi tiempo en administración, adquirí habilidades significativas en la preparación de informes utilizando SQL, contribuyendo así a la eficiencia operativa y la toma de decisiones informadas.
 
 # Me gradué como Licenciado en Administración de Empresas por la Universidad de Buenos Aires, donde consolidé mi comprensión de estrategias empresariales y gestión eficaz de recursos. Me caracterizo por ser una persona proactiva, orientada a resultados y con un alto nivel de empatía hacia mis compañeros de equipo.
@@ -25,7 +26,8 @@ def index() -> rx.Component:
             rx.container(
                 rx.color_mode.button(position="top-right"),
                 rx.vstack(
-                    rx.heading("Data scientist & Data analyst.", size="6"),
+                    rx.heading(  rx.fragment(
+                    rx.text("Data scientist"), rx.text("& Data analyst"),),size="6"),
                     rx.image(
                         src="https://github.com/arnaldoquinones/portfolio/blob/master/assets/foto_perfil.png?raw=true",
                         width="150px",
