@@ -9,7 +9,8 @@ from .proyects import proyects
 class State(rx.State):
     """The main application state."""
     pass
-   
+
+# "Scientia est potentia."
 
 # Con más de 24 años de experiencia en el Banco ICBC, he desempeñado roles tanto en el área administrativa como en el comercial, específicamente como oficial de negocios retail. Durante mi tiempo en administración, adquirí habilidades significativas en la preparación de informes utilizando SQL, contribuyendo así a la eficiencia operativa y la toma de decisiones informadas.
 
