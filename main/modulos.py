@@ -1,9 +1,9 @@
 import reflex as rx
 from rxconfig import config
 
-# ----------------------------------
-# -- BARRA DE DESPLAZAMIENTO MENU --
-# ----------------------------------
+# -------------------------
+# -- BARRA SIDEBAR  MENU --
+# -------------------------
 
 def sidebar_item(text: str, icon: str, href: str) -> rx.Component:
     """Crea un elemento del menú lateral."""

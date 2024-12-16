@@ -4,7 +4,7 @@ from .modulos import sidebar_bottom_profile
 
 # "Hello! I am Arnaldo, a professional in data analysis, system design, and development.",
 def about_me() -> rx.Component:
-    """Página Poryects."""
+    """Página About me."""
     return rx.box(
         rx.hstack(
             sidebar_bottom_profile(),  # Barra lateral
