@@ -2,7 +2,7 @@ import reflex as rx
 from rxconfig import config
 from .modulos import sidebar_bottom_profile
 
-# "Hello! I am Arnaldo, a professional in data analysis, system design, and development.",
+
 def about_me() -> rx.Component:
     """Página About me."""
     return rx.box(

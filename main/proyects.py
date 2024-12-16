@@ -4,7 +4,7 @@ from .modulos import sidebar_bottom_profile
 
 
 def proyects() -> rx.Component:
-    """Página Poryects."""
+    """Página Proyects."""
     return rx.box(
         rx.hstack(
             sidebar_bottom_profile(),  # Barra lateral
