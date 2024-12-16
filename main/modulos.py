@@ -11,7 +11,7 @@ def sidebar_item(text: str, icon: str, href: str) -> rx.Component:
         rx.hstack(
             rx.icon(icon),
             rx.text(text, size="4"),
-            width="100%",
+            width="90%",
             padding_x="0.5rem",
             padding_y="0.75rem",
             align="center",
@@ -38,7 +38,7 @@ def sidebar_items() -> rx.Component:
         sidebar_item("Skills", "bar-chart-4", "./skills"),
         sidebar_item("Messages", "mail", "./messages"),
         spacing="3",  # Espaciado ajustado
-        width="100%",
+        width="12em",
     )
 
 
@@ -119,7 +119,7 @@ def sidebar_bottom_profile() -> rx.Component:
                 bg=rx.color("accent", 3),
                 align="start",
                 height="650px",
-                width="16em",
+                width="12em",
             ),
         ),
         rx.mobile_and_tablet(
