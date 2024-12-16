@@ -41,7 +41,14 @@ def index() -> rx.Component:
                         font_style="italic",
                         text_align="center",
                         color="white",
-                    ),  # Texto añadido aquí
+                    ), # Texto añadido aquí
+                    rx.flex(
+                    rx.text("""Con más de 24 años de experiencia en el Banco ICBC, he desempeñado roles tanto en el área administrativa como en el comercial, específicamente como oficial de negocios retail. Durante mi tiempo en administración, adquirí habilidades significativas en la preparación de informes utilizando SQL, contribuyendo así a la eficiencia operativa y la toma de decisiones informadas."""),
+                    justify="center",
+                    align="center",
+                    height="200px",
+                    width="400px"
+                    ),
                     rx.link(
                         rx.button("Go to my GitHub!", border_radius="20px"),
                         href="https://github.com/arnaldoquinones",
