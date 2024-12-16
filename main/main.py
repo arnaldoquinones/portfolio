@@ -49,6 +49,7 @@ def index() -> rx.Component:
                     height="200px",
                     width="400px"
                     ),
+                    rx.hstack(
                     rx.link(
                         rx.button("Go to my GitHub!", border_radius="20px"),
                         href="https://github.com/arnaldoquinones",
@@ -59,6 +60,9 @@ def index() -> rx.Component:
                         href="https://www.linkedin.com/in/apquinones/",
                         is_external=True,
                     ),
+                    spacing="4",  # Espaciado horizontal entre los botones
+                    align="center"
+                ),
                     spacing="5",
                     justify="center",
                 ),
