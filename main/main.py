@@ -10,7 +10,6 @@ class State(rx.State):
     """The main application state."""
     pass
 
-# "Scientia est potentia."
 
 # Con más de 24 años de experiencia en el Banco ICBC, he desempeñado roles tanto en el área administrativa como en el comercial, específicamente como oficial de negocios retail. Durante mi tiempo en administración, adquirí habilidades significativas en la preparación de informes utilizando SQL, contribuyendo así a la eficiencia operativa y la toma de decisiones informadas.
 
@@ -34,6 +33,13 @@ def index() -> rx.Component:
                         border_radius="50%",
                         alt="Foto de perfil",
                     ),
+                    rx.text("""
+                        "...Scientia est potentia..."  """,
+                        font_size="lg",
+                        font_style="italic",
+                        text_align="center",
+                        color="white",
+                    ),  # Texto añadido aquí
                     rx.link(
                         rx.button("Go to my GitHub!", border_radius="20px"),
                         href="https://github.com/arnaldoquinones",
