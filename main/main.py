@@ -47,7 +47,8 @@ def index() -> rx.Component:
                     justify="center",
                     align="center",
                     height="200px",
-                    width="400px"
+                    width="400px",
+                    text_align="justify"
                     ),
                     rx.hstack(
                     rx.link(
