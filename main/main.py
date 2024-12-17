@@ -26,8 +26,13 @@ def index() -> rx.Component:
             rx.container(
                 rx.color_mode.button(position="top-right"),
                 rx.vstack(
-                    rx.heading(  rx.fragment(
-                    rx.text("Data scientist"), rx.text("& Data analyst"),),size="6"),
+                    rx.heading(
+                        rx.fragment(
+                            rx.text("Data scientist"), 
+                            rx.text("& Data analyst"),
+                        ),
+                        size="6"
+                    ),
                     rx.image(
                         src="https://github.com/arnaldoquinones/portfolio/blob/master/assets/foto_perfil.png?raw=true",
                         width="150px",
@@ -35,39 +40,42 @@ def index() -> rx.Component:
                         border_radius="50%",
                         alt="Foto de perfil",
                     ),
-                    rx.text("""
-                        "...Scientia est potentia..."  """,
-                        font_size="lg",
+                    rx.text(
+                        """ "...Scientia est potentia..." """,
+                        font_size="2em",
                         font_style="italic",
                         text_align="center",
                         color="white",
-                    ), # Texto añadido aquí
+                    ),  # Texto añadido aquí
                     rx.flex(
-                    rx.text("""Con más de 24 años de experiencia en el Banco ICBC, he desempeñado roles tanto en el área administrativa como en el comercial, específicamente como oficial de negocios. Durante mi tiempo en administración, adquirí habilidades significativas en la preparación de informes utilizando SQL, contribuyendo así a la eficiencia operativa y la toma de decisiones informadas."""),
-                    justify="center",
-                    align="center",
-                    height="200px",
-                    width="400px",
-                    text_align="justify"
+                        rx.text(
+                            """ Con más de 24 años de experiencia en el Banco ICBC, he desempeñado roles tanto en el área administrativa como en el comercial, específicamente como oficial de negocios. Durante mi tiempo en administración, adquirí habilidades significativas en la preparación de informes utilizando SQL, contribuyendo así a la eficiencia operativa y la toma de decisiones informadas."""
+                        ),
+                        justify="center",
+                        align="center",
+                        height="200px",
+                        width="400px",
+                        text_align="justify",
                     ),
                     rx.hstack(
-                    rx.link(
-                        rx.button("Go to my GitHub!", border_radius="20px"),
-                        href="https://github.com/arnaldoquinones",
-                        is_external=True,
+                        rx.link(
+                            rx.button("GitHub", border_radius="20px", width="120px"),
+                            href="https://github.com/arnaldoquinones",
+                            is_external=True,
+                        ),
+                        rx.link(
+                            rx.button("Linkedin", border_radius="20px", width="120px"),
+                            href="https://www.linkedin.com/in/apquinones/",
+                            is_external=True,
+                        ),
+                        rx.link(
+                            rx.button("Messages", border_radius="20px", width="120px"),
+                            href="https://www.linkedin.com/in/apquinones/",
+                            is_external=True,
+                        ),
+                        spacing="4",  # Espaciado horizontal entre los botones
+                        align="center",
                     ),
-                    rx.link(
-                        rx.button("Go to my Linkedin!", border_radius="20px"),
-                        href="https://www.linkedin.com/in/apquinones/",
-                        is_external=True,
-                    ),
-                    rx.link(
-                        rx.button("Messages!", border_radius="20px"),
-                        href="https://www.linkedin.com/in/apquinones/",
-                        is_external=True),
-                    spacing="4",  # Espaciado horizontal entre los botones
-                    align="center"
-                ),
                     spacing="5",
                     justify="center",
                 ),
@@ -80,6 +88,7 @@ def index() -> rx.Component:
         background="linear-gradient(to bottom, #000066, #000000)",
         overflow_y="auto",
     )
+
 
 app = rx.App()
 
