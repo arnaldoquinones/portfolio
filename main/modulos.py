@@ -79,12 +79,7 @@ def sidebar_bottom_profile() -> rx.Component:
                 rx.divider(margin_y="2"),  # Ajustado a un valor válido
                 rx.vstack(
                     rx.hstack(
-                        rx.icon_button(
-                            rx.icon("user"),
-                            size="3",
-                            radius="full",
-                        ),
-                        rx.vstack(
+                            rx.vstack(
                             rx.box(
                                 rx.text(
                                     "Made by",
