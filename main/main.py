@@ -43,7 +43,7 @@ def index() -> rx.Component:
                         color="white",
                     ), # Texto añadido aquí
                     rx.flex(
-                    rx.text("""Con más de 24 años de experiencia en el Banco ICBC, he desempeñado roles tanto en el área administrativa como en el comercial, específicamente como oficial de negocios retail. Durante mi tiempo en administración, adquirí habilidades significativas en la preparación de informes utilizando SQL, contribuyendo así a la eficiencia operativa y la toma de decisiones informadas."""),
+                    rx.text("""Con más de 24 años de experiencia en el Banco ICBC, he desempeñado roles tanto en el área administrativa como en el comercial, específicamente como oficial de negocios. Durante mi tiempo en administración, adquirí habilidades significativas en la preparación de informes utilizando SQL, contribuyendo así a la eficiencia operativa y la toma de decisiones informadas."""),
                     justify="center",
                     align="center",
                     height="200px",
@@ -61,6 +61,10 @@ def index() -> rx.Component:
                         href="https://www.linkedin.com/in/apquinones/",
                         is_external=True,
                     ),
+                    rx.link(
+                        rx.button("Messages!", border_radius="20px"),
+                        href="https://www.linkedin.com/in/apquinones/",
+                        is_external=True),
                     spacing="4",  # Espaciado horizontal entre los botones
                     align="center"
                 ),
