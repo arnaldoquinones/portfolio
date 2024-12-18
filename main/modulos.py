@@ -435,7 +435,9 @@ class TopBannerSignup(rx.ComponentState):
 
 top_banner_signup = TopBannerSignup.create
 
+# -------------------
 # -- CONTACT FORM ---
+# -------------------
 
 class FormState(rx.State):
     form_data: dict = {}
@@ -445,7 +447,7 @@ class FormState(rx.State):
         """Handle the form submit."""
         self.form_data = form_data
 
-def form_example():
+def form_contact():
     return rx.vstack(
         rx.form(
             rx.vstack(
