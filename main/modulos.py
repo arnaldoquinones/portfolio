@@ -10,6 +10,13 @@ from email.mime.multipart import MIMEMultipart
 
 def sidebar_item(text: str, icon: str, action: str = None) -> rx.Component:
     """Crea un elemento del menú lateral."""
+    # Define el evento on_click basado en la acción
+    if action == "messages":
+        on_click_event = lambda: State.set_show_popup(True)  # Abre el modal
+    else:
+        on_click_event = lambda: None  # Evento vacío válido
+
+    # Devuelve el componente del sidebar
     return rx.hstack(
         rx.icon(icon),
         rx.text(text, size="4"),
@@ -24,8 +31,9 @@ def sidebar_item(text: str, icon: str, action: str = None) -> rx.Component:
             },
             "border-radius": "0.5em",
         },
-        on_click=lambda: State.set_show_popup(True) if action == "messages" else lambda: None,  # Asegura siempre un evento válido
+        on_click=on_click_event,  # Usa el evento definido
     )
+
 
 
 
@@ -36,10 +44,12 @@ def sidebar_items() -> rx.Component:
         sidebar_item("About me", "layout-dashboard"),
         sidebar_item("Proyects", "square-library"),
         sidebar_item("Skills", "bar-chart-4"),
-        sidebar_item("Messages", "mail", action="messages"),  # Abre el modal
+        sidebar_item("Messages", "mail", action="messages"),  # Vincula al modal
         spacing="3",
         width="12em",
     )
+
+
 
 
 
