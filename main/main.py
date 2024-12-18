@@ -17,7 +17,7 @@ def index() -> rx.Component:
         rx.hstack(
             sidebar_bottom_profile(),
             rx.container(
-                rx.color_mode.button(position="top-right"),
+                # rx.color_mode.button(position="top-right"),
                 rx.vstack(
                     rx.heading(
                         rx.fragment(
