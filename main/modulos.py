@@ -1,45 +1,45 @@
 import reflex as rx
 from rxconfig import config
+import smtplib
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
 
 # -------------------------
 # -- BARRA SIDEBAR  MENU --
 # -------------------------
 
-def sidebar_item(text: str, icon: str, href: str) -> rx.Component:
+def sidebar_item(text: str, icon: str, action: str = None) -> rx.Component:
     """Crea un elemento del menú lateral."""
-    return rx.link(
-        rx.hstack(
-            rx.icon(icon),
-            rx.text(text, size="4"),
-            width="90%",
-            padding_x="0.5rem",
-            padding_y="0.75rem",
-            align="center",
-            style={
-                "_hover": {
-                    "bg": rx.color("accent", 4),
-                    "color": rx.color("accent", 11),
-                },
-                "border-radius": "0.5em",
+    return rx.hstack(
+        rx.icon(icon),
+        rx.text(text, size="4"),
+        width="90%",
+        padding_x="0.5rem",
+        padding_y="0.75rem",
+        align="center",
+        style={
+            "_hover": {
+                "bg": rx.color("accent", 4),
+                "color": rx.color("accent", 11),
             },
-        ),
-        href=href,
-        underline="none",
-        weight="medium",
-        width="100%",
+            "border-radius": "0.5em",
+        },
+        on_click=lambda: State.set_show_popup(True) if action == "messages" else None,
     )
+
 
 
 def sidebar_items() -> rx.Component:
     """Crea la lista principal de elementos del menú lateral."""
     return rx.vstack(
-        sidebar_item("About me", "layout-dashboard", "./about"),
-        sidebar_item("Proyects", "square-library", "./proyects"),
-        sidebar_item("Skills", "bar-chart-4", "./skills"),
-        sidebar_item("Messages", "mail", "./messages"),
-        spacing="3",  # Espaciado ajustado
+        sidebar_item("About me", "layout-dashboard"),
+        sidebar_item("Proyects", "square-library"),
+        sidebar_item("Skills", "bar-chart-4"),
+        sidebar_item("Messages", "mail", action="messages"),  # Abre el modal
+        spacing="3",
         width="12em",
     )
+
 
 
 def sidebar_bottom_profile() -> rx.Component:
@@ -435,12 +435,17 @@ class TopBannerSignup(rx.ComponentState):
 
 top_banner_signup = TopBannerSignup.create
 
-# -------------------
-# -- CONTACT FORM ---
-# -------------------
-# Función para enviar el correo electrónico
+
+# ------------------
+# -- CONTACT FORM --
+# ------------------
+
+class State(rx.State):
+    show_popup: bool = False  # Controla la visibilidad del modal
+    email_response: str = ""  # Mensaje de respuesta tras enviar el email
+
+# 2. Función para enviar el correo electrónico
 def send_email(name, email, message):
-    # Configura los datos del servidor SMTP
     sender_email = "tu_correo@gmail.com"  # Cambia esto por tu correo
     sender_password = "tu_password"       # Cambia esto por tu contraseña
     receiver_email = "destinatario@gmail.com"  # Correo donde recibes los mensajes
@@ -451,12 +456,10 @@ def send_email(name, email, message):
     msg["To"] = receiver_email
     msg["Subject"] = f"Nuevo mensaje de {name}"
 
-    # Cuerpo del mensaje
     body = f"Nombre: {name}\nEmail: {email}\nMensaje:\n{message}"
     msg.attach(MIMEText(body, "plain"))
 
     try:
-        # Conéctate al servidor SMTP y envía el correo
         server = smtplib.SMTP("smtp.gmail.com", 587)
         server.starttls()
         server.login(sender_email, sender_password)
@@ -466,7 +469,7 @@ def send_email(name, email, message):
     except Exception as e:
         return f"Error al enviar el mensaje: {e}"
 
-# Ventana pop-up con los inputs
+# 3. Ventana pop-up con los inputs
 def contact_popup() -> rx.Component:
     return rx.modal(
         rx.modal_overlay(
@@ -496,6 +499,7 @@ def contact_popup() -> rx.Component:
         ),
         is_open=True,  # Para abrir el modal por defecto
     )
+
 
 
 
