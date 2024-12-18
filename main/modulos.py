@@ -24,8 +24,9 @@ def sidebar_item(text: str, icon: str, action: str = None) -> rx.Component:
             },
             "border-radius": "0.5em",
         },
-        on_click=lambda: State.set_show_popup(True) if action == "messages" else None,
+        on_click=lambda: State.set_show_popup(True) if action == "messages" else lambda: None,  # Asegura siempre un evento válido
     )
+
 
 
 
