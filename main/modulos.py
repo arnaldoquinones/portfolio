@@ -438,35 +438,63 @@ top_banner_signup = TopBannerSignup.create
 # -------------------
 # -- CONTACT FORM ---
 # -------------------
+# Función para enviar el correo electrónico
+def send_email(name, email, message):
+    # Configura los datos del servidor SMTP
+    sender_email = "tu_correo@gmail.com"  # Cambia esto por tu correo
+    sender_password = "tu_password"       # Cambia esto por tu contraseña
+    receiver_email = "destinatario@gmail.com"  # Correo donde recibes los mensajes
 
-class FormState(rx.State):
-    form_data: dict = {}
+    # Construye el mensaje del email
+    msg = MIMEMultipart()
+    msg["From"] = sender_email
+    msg["To"] = receiver_email
+    msg["Subject"] = f"Nuevo mensaje de {name}"
 
-    @rx.event
-    def handle_submit(self, form_data: dict):
-        """Handle the form submit."""
-        self.form_data = form_data
+    # Cuerpo del mensaje
+    body = f"Nombre: {name}\nEmail: {email}\nMensaje:\n{message}"
+    msg.attach(MIMEText(body, "plain"))
 
-def form_contact():
-    return rx.vstack(
-        rx.form(
-            rx.vstack(
-                rx.input(
-                    placeholder="First Name",
-                    name="first_name",
+    try:
+        # Conéctate al servidor SMTP y envía el correo
+        server = smtplib.SMTP("smtp.gmail.com", 587)
+        server.starttls()
+        server.login(sender_email, sender_password)
+        server.sendmail(sender_email, receiver_email, msg.as_string())
+        server.quit()
+        return "Mensaje enviado con éxito."
+    except Exception as e:
+        return f"Error al enviar el mensaje: {e}"
+
+# Ventana pop-up con los inputs
+def contact_popup() -> rx.Component:
+    return rx.modal(
+        rx.modal_overlay(
+            rx.modal_content(
+                rx.modal_header("Envíanos un mensaje"),
+                rx.modal_body(
+                    rx.vstack(
+                        rx.input(placeholder="Nombre", id="name"),
+                        rx.input(placeholder="Email", id="email"),
+                        rx.text_area(placeholder="Mensaje", id="message", rows=5),
+                    ),
                 ),
-                rx.input(
-                    placeholder="Last Name",
-                    name="last_name",
+                rx.modal_footer(
+                    rx.button(
+                        "Enviar",
+                        on_click=lambda: rx.state.set(
+                            "email_response",
+                            send_email(
+                                rx.state.get("name"),
+                                rx.state.get("email"),
+                                rx.state.get("message"),
+                            ),
+                        ),
+                    ),
                 ),
-                rx.button("Submit", type="submit"),
-            ),
-            on_submit=FormState.handle_submit,
-            reset_on_submit=True,
+            )
         ),
-        rx.divider(),
-        rx.heading("Results"), 
-        rx.text(FormState.form_data.to_string()),
+        is_open=True,  # Para abrir el modal por defecto
     )
 
 
