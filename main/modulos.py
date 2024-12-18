@@ -433,6 +433,8 @@ class TopBannerSignup(rx.ComponentState):
             
         )
 
+top_banner_signup = TopBannerSignup.create
+
 # -- CONTACT FORM ---
 
 class FormState(rx.State):
@@ -464,8 +466,6 @@ def form_example():
         rx.heading("Results"), 
         rx.text(FormState.form_data.to_string()),
     )
-
-top_banner_signup = TopBannerSignup.create
 
 
 
