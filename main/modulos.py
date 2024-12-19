@@ -226,7 +226,7 @@ def pop_up_message():
     return rx.dialog.root(
         rx.dialog.content(
             rx.dialog.title(
-                rx.heading("Send me a message", size="2", color="white"),
+                rx.heading("Contact me", size="2", color="white"),
                 rx.dialog.close(  # Coloca el botón con el ícono de cierre en la esquina superior derecha
                     rx.button(
                         rx.icon("x"),  # Usamos el ícono de la cruz
@@ -241,7 +241,7 @@ def pop_up_message():
                             "color": "white",  # Color blanco para la cruz
                             "padding": "0",  # Elimina el padding
                             "font-size": "1px",  # Ajusta el tamaño del ícono
-                        }
+                            }
                     )
                 ),
             ),
@@ -251,7 +251,22 @@ def pop_up_message():
                         rx.input(placeholder="First Name", name="first_name"),
                         rx.input(placeholder="Last Name", name="last_name"),
                         rx.input(placeholder="Email", name="email"),
-                        rx.input(placeholder="Write your message", name="message"),
+                        rx.text_area(
+                            placeholder="Write your message", 
+                            name="message",
+                            style={  # Estilos de redimensionado para el input de mensaje
+                                # "padding-top": "10px",  # Ajusta la distancia desde la parte superior
+                                # "padding-left": "10px",  # Ajusta la distancia desde el lado izquierdo
+                                "text-align": "left",  # Asegura que el texto esté alineado a la izquierda
+                                # "height": "150px", 
+                                "resize": "vertical",  # Habilita redimensionamiento en ambas direcciones
+                                "overflow": "auto",  # Activa el desplazamiento si el contenido excede el tamaño
+                                "min_height": "50px",  # Altura mínima para el input
+                                "min_width": "170px",  # Ancho mínimo para el input
+                                "white-space": "pre-wrap",  # Permite saltos de línea automáticamente
+                                "word-wrap": "break-word",  # Asegura que las palabras largas se ajusten
+                            }
+                        ),
                         rx.button("Submit", type="submit"),
                     ),
                     on_submit=MessageFormStateV2.handle_submit,  # Maneja el envío
@@ -270,30 +285,6 @@ def pop_up_message():
     )
 
 
-
-
-
-
-
-
-
-
-# rx.input(
-#     placeholder="Email Address",
-#     type="email", 
-#     required=True,
-#     name="email"
-# )
-
-# reset_on_submit=True
-
-# rx.input(
-    placeholder="Email address",
-    border_color="#000000",
-    focus_border_color="#0000ff",
-    background="#ffffff",
-    width="100%",
-# )
 
 # class FormState(rx.State):
 #     form_data: dict = {}
