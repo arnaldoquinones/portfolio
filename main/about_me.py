@@ -20,6 +20,7 @@ def about() -> rx.Component:
                     spacing="5",
                     justify="center",
                 ),
+                form_example(),
                 padding="1em",
                 flex="1",
             ),
@@ -41,27 +42,43 @@ class FormState(rx.State):
 
 
 def form_example():
-    return rx.vstack(
-        rx.form(
-            rx.vstack(
-                rx.input(
-                    placeholder="First Name",
-                    name="first_name",
-                ),
-                rx.input(
-                    placeholder="Last Name",
-                    name="last_name",
-                ),
-                rx.hstack(
-                    rx.checkbox("Checked", name="check"),
-                    rx.switch("Switched", name="switch"),
-                ),
-                rx.button("Submit", type="submit"),
-            ),
-            on_submit=FormState.handle_submit,
-            reset_on_submit=True,
+    return rx.popover.root(
+        rx.popover.trigger(
+            rx.button("Popover"),
         ),
-        rx.divider(),
-        rx.heading("Results"),
-        rx.text(FormState.form_data.to_string()),
+        rx.popover.content(
+            rx.form(
+                rx.vstack(
+                    rx.heading("Send a message", size="1xl", color="white"),
+                    rx.input(
+                        placeholder="First Name",
+                        name="first_name",
+                    ),
+                    rx.input(
+                        placeholder="Last Name",
+                        name="last_name",
+                    ),
+                    rx.input(
+                        placeholder="email",
+                        name="email",
+                    ),
+                    rx.input(
+                        placeholder="write your message",
+                        name="message",
+                    ),
+                    rx.hstack(
+                        rx.checkbox("Checked", name="check"),
+                        rx.switch("Switched", name="switch"),
+                    ),
+                    rx.button("Submit", type="submit"),
+                ),
+                on_submit=FormState.handle_submit,
+                reset_on_submit=True,
+            ),
+            rx.divider(),
+            rx.heading("Results"),
+            rx.text(FormState.form_data.to_string()),
+        ),
     )
+
+# END
