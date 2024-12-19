@@ -48,6 +48,7 @@ def index() -> rx.Component:
                         width="400px",
                         text_align="justify",
                     ),
+                    form_example(),
                     rx.hstack(
                         rx.link(
                             rx.button("GitHub", border_radius="20px", width="120px"),
