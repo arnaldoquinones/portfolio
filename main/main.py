@@ -1,6 +1,6 @@
 import reflex as rx
 from rxconfig import config
-from .modulos import sidebar_bottom_profile
+from .modulos import sidebar_bottom_profile, form_example
 from .about_me import about
 from .skills import skills
 from .proyects import proyects

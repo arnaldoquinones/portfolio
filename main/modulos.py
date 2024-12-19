@@ -184,6 +184,60 @@ def sidebar_bottom_profile() -> rx.Component:
     )
 
 
+# -------------------------
+# -- POP UP WINDOW EMAIL --
+# -------------------------
+
+class FormState(rx.State):
+    form_data: dict = {}
+
+    @rx.event
+    def handle_submit(self, form_data: dict):
+        """Handle the form submit."""
+        self.form_data = form_data
+
+
+
+def form_example():
+    return rx.popover.root(
+        rx.popover.trigger(
+            rx.button("Popover"),
+        ),
+        rx.popover.content(
+            rx.form(
+                rx.vstack(
+                    rx.heading("Send a message", size="1xl", color="white"),
+                    rx.input(
+                        placeholder="First Name",
+                        name="first_name",
+                    ),
+                    rx.input(
+                        placeholder="Last Name",
+                        name="last_name",
+                    ),
+                    rx.input(
+                        placeholder="email",
+                        name="email",
+                    ),
+                    rx.input(
+                        placeholder="write your message",
+                        name="message",
+                    ),
+                    rx.hstack(
+                        rx.checkbox("Checked", name="check"),
+                        rx.switch("Switched", name="switch"),
+                    ),
+                    rx.button("Submit", type="submit"),
+                ),
+                on_submit=FormState.handle_submit,
+                reset_on_submit=True,
+            ),
+            rx.divider(),
+            rx.heading("Results"),
+            rx.text(FormState.form_data.to_string()),
+        ),
+    )
+
 
 
 
@@ -307,6 +361,7 @@ def login_multiple_thirdparty() -> rx.Component:
         max_width="28em",
         width="100%",
     )
+
 
 # ----------------
 # -- BANNER UNO --
