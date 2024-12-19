@@ -94,7 +94,7 @@ def main_page() -> rx.Component:
         rx.link("About Me", href="./about_me"),
         rx.link("Skills", href="./skills"),
         rx.link("Projects", href="./proyects"),
-        rx.text("Welcome to my Portfolio", size="3xl", font_weight="bold"),
+        rx.text("Welcome to my Portfolio", size="3", font_weight="bold"),
         spacing="4",
         align="center",
         justify="center",

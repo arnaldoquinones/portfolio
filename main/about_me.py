@@ -10,10 +10,10 @@ def about() -> rx.Component:
             sidebar_bottom_profile(),  # Barra lateral
             rx.container(
                 rx.vstack(
-                    rx.heading("About me.", size="3xl", color="white"),
+                    rx.heading("About me.", size="3", color="white"),
                     rx.text(
                         "Hello! I am Arnaldo, a professional in data analysis, system design, and development.",
-                        size="lg",
+                        size="5",
                         color="gray.200",
                         text_align="center",
                     ),

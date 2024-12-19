@@ -1,6 +1,6 @@
 import reflex as rx
 from rxconfig import config
-from .modulos import sidebar_bottom_profile
+from .modulos import sidebar_bottom_profile, login_multiple_thirdparty
 
 
 def proyects() -> rx.Component:
@@ -10,10 +10,10 @@ def proyects() -> rx.Component:
             sidebar_bottom_profile(),  # Barra lateral
             rx.container(
                 rx.vstack(
-                    rx.heading("Proyects Page", size="3xl", color="white"),
+                    rx.heading("Proyects Page", size="3", color="white"),
                     rx.text(
                         "Those are my works.",
-                        size="lg",
+                        size="5",
                         color="gray.200",
                         text_align="center",
                     ),
@@ -23,6 +23,7 @@ def proyects() -> rx.Component:
                 padding="1em",
                 flex="1",
             ),
+            # login_multiple_thirdparty(),
         ),
         min_height="100vh",
         width="100vw",

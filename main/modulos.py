@@ -206,14 +206,19 @@ def sidebar_bottom_profile() -> rx.Component:
 # -- POP UP WINDOW EMAIL --
 # -------------------------
 
-class FormState(rx.State):
-    form_data: dict = {}
+class MessageFormStateV2(rx.State):
+    is_popover_open: bool = False
+
 
     @rx.event
-    def handle_submit(self, form_data: dict):
-        """Handle the form submit."""
-        self.form_data = form_data
+    def toggle_popover(self):
+        """Alterna la visibilidad del pop-up."""
+        self.is_popover_open = not self.is_popover_open
 
+    @rx.event
+    def close_popover(self):
+        """Cierra el pop-up."""
+        self.is_popover_open = False
 
 
 def form_example():
@@ -226,7 +231,7 @@ def form_example():
             rx.popover.content(
                 rx.form(
                     rx.vstack(
-                        rx.heading("Send a message", size="1xl", color="white"),
+                        rx.heading("Send a message", size="2", color="white"),
                         rx.input(
                             placeholder="First Name",
                             name="first_name",
@@ -259,258 +264,137 @@ def form_example():
         ),
     )
 
-
-
-
-
 # -------------------
-# -- MENU DE LOGIN --
+# -- LOG IN WINDOW --
 # -------------------
+
 
 
 def login_multiple_thirdparty() -> rx.Component:
-    return rx.card(
-        rx.vstack(
-            rx.flex(
-                rx.image(
-                    src=("https://github.com/arnaldoquinones/my_portfolio/blob/master/assets/foto_perfil.png?raw=true"),
-                    width="2.5em",
-                    height="auto",
-                    border_radius="25%",
-                ),
-                rx.heading(
-                    "Sign in to your account",
-                    size="6",
-                    as_="h2",
-                    width="100%",
-                ),
-                rx.hstack(
-                    rx.text(
-                        "New here?",
-                        size="3",
-                        text_align="left",
+    return rx.center(  # Asegura que la tarjeta esté centrada
+        rx.card(
+            rx.vstack(
+                rx.flex(
+                    rx.image(
+                        src=("https://github.com/arnaldoquinones/my_portfolio/blob/master/assets/foto_perfil.png?raw=true"),
+                        width="2.5em",
+                        height="auto",
+                        border_radius="25%",
                     ),
-                    rx.link("Sign up", href="#", size="3"),
-                    spacing="2",
-                    opacity="0.8",
+                    rx.heading(
+                        "Sign in to your account",
+                        size="6",
+                        as_="h2",
+                        width="100%",
+                    ),
+                    rx.hstack(
+                        rx.text(
+                            "New here?",
+                            size="3",
+                            text_align="left",
+                        ),
+                        rx.link("Sign up", href="#", size="3"),
+                        spacing="2",
+                        opacity="0.8",
+                        width="100%",
+                    ),
+                    justify="start",
+                    direction="column",
+                    spacing="4",
                     width="100%",
                 ),
-                justify="start",
-                direction="column",
-                spacing="4",
-                width="100%",
-            ),
-            rx.vstack(
-                rx.text(
-                    "Email address",
-                    size="3",
-                    weight="medium",
-                    text_align="left",
-                    width="100%",
-                ),
-                rx.input(
-                    rx.input.slot(rx.icon("user")),
-                    placeholder="user@reflex.dev",
-                    type="email",
-                    size="3",
-                    width="100%",
-                ),
-                spacing="2",
-                justify="start",
-                width="100%",
-            ),
-            rx.vstack(
-                rx.hstack(
+                rx.vstack(
                     rx.text(
-                        "Password",
+                        "Email address",
                         size="3",
                         weight="medium",
+                        text_align="left",
+                        width="100%",
                     ),
-                    rx.link(
-                        "Forgot password?",
-                        href="#",
+                    rx.input(
+                        rx.input.slot(rx.icon("user")),
+                        placeholder="user@reflex.dev",
+                        type="email",
+                        size="3",
+                        width="100%",
+                    ),
+                    spacing="2",
+                    justify="start",
+                    width="100%",
+                ),
+                rx.vstack(
+                    rx.hstack(
+                        rx.text(
+                            "Password",
+                            size="3",
+                            weight="medium",
+                        ),
+                        rx.link(
+                            "Forgot password?",
+                            href="#",
+                            size="3",
+                        ),
+                        justify="between",
+                        width="100%",
+                    ),
+                    rx.input(
+                        rx.input.slot(rx.icon("lock")),
+                        placeholder="Enter your password",
+                        type="password",
+                        size="3",
+                        width="100%",
+                    ),
+                    spacing="2",
+                    width="100%",
+                ),
+                rx.button("Sign in", size="3", width="100%"),
+                rx.hstack(
+                    rx.divider(margin="0"),
+                    rx.text(
+                        "Or continue with",
+                        white_space="nowrap",
+                        weight="medium",
+                    ),
+                    rx.divider(margin="0"),
+                    align="center",
+                    width="100%",
+                ),
+                rx.center(
+                    rx.icon_button(
+                        rx.icon(tag="github"),
+                        variant="soft",
                         size="3",
                     ),
-                    justify="between",
-                    width="100%",
-                ),
-                rx.input(
-                    rx.input.slot(rx.icon("lock")),
-                    placeholder="Enter your password",
-                    type="password",
-                    size="3",
-                    width="100%",
-                ),
-                spacing="2",
-                width="100%",
-            ),
-            rx.button("Sign in", size="3", width="100%"),
-            rx.hstack(
-                rx.divider(margin="0"),
-                rx.text(
-                    "Or continue with",
-                    white_space="nowrap",
-                    weight="medium",
-                ),
-                rx.divider(margin="0"),
-                align="center",
-                width="100%",
-            ),
-            rx.center(
-                rx.icon_button(
-                    rx.icon(tag="github"),
-                    variant="soft",
-                    size="3",
-                ),
-                rx.icon_button(
-                    rx.icon(tag="facebook"),
-                    variant="soft",
-                    size="3",
-                ),
-                rx.icon_button(
-                    rx.icon(tag="twitter"),
-                    variant="soft",
-                    size="3",
-                ),
-                spacing="4",
-                direction="row",
-                width="100%",
-            ),
-            spacing="6",
-            width="100%",
-        ),
-        size="4",
-        max_width="28em",
-        width="100%",
-    )
-
-
-# ----------------
-# -- BANNER UNO --
-# ----------------
-
-class TopBannerGradient(rx.ComponentState):
-    hide: bool = False
-
-    @rx.event
-    def toggle(self):
-        self.hide = not self.hide
-
-    @classmethod
-    def get_component(cls, **props):
-        return rx.cond(
-            ~cls.hide,
-            rx.flex(
-                rx.text(
-                    "The new Reflex version is now available! ",
-                    rx.link(
-                        "Read the release notes",
-                        href="#",
-                        underline="always",
-                        display="inline",
-                        underline_offset="2px",
+                    rx.icon_button(
+                        rx.icon(tag="facebook"),
+                        variant="soft",
+                        size="3",
                     ),
-                    align_items=["start", "center"],
-                    margin="auto",
-                    spacing="3",
-                    weight="medium",
-                ),
-                rx.icon(
-                    "x",
-                    cursor="pointer",
-                    justify="end",
-                    flex_shrink=0,
-                    on_click=cls.toggle,
-                ),
-                wrap="nowrap",
-                # position="fixed",
-                justify="between",
-                width="100%",
-                # top="0",
-                align="center",
-                left="0",
-                # z_index="50",
-                padding="1rem",
-                background=f"linear-gradient(99deg, {rx.color('blue', 4)}, {rx.color('pink', 3)}, {rx.color('mauve', 3)})",
-                **props,
-            ),
-            # Remove this in production
-            rx.icon_button(
-                rx.icon("eye"),
-                cursor="pointer",
-                on_click=cls.toggle,
-            ),
-        )
-top_banner_gradient = TopBannerGradient.create
-
-
-
-# -----------------
-# -- BANNER TRES --
-# -----------------
-class TopBannerSignup(rx.ComponentState):
-    hide: bool = False
-
-    @rx.event
-    def toggle(self):
-        self.hide = not self.hide
-
-    @classmethod
-    def get_component(cls, **props):
-        return rx.cond(
-            ~cls.hide,
-            rx.flex(
-                rx.image(
-                    src="/logo.jpg",   
-                    width="2em",
-                    height="auto",
-                    border_radius="25%",
-                ),
-                rx.text(
-                    "Web apps in pure Python. Deploy with a single command.",
-                    weight="medium",
-                ),
-                rx.flex(
-                    rx.button(
-                        "Sign up",
-                        cursor="pointer",
-                        radius="large",
-                    ),
-                    rx.icon(
-                        "x",
-                        cursor="pointer",
-                        justify="end",
-                        flex_shrink=0,
-                        on_click=cls.toggle,
+                    rx.icon_button(
+                        rx.icon(tag="twitter"),
+                        variant="soft",
+                        size="3",
                     ),
                     spacing="4",
-                    align="center",
+                    direction="row",
+                    width="100%",
                 ),
-                wrap="nowrap",
-                # position="fixed",
-                flex_direction=["column", "column", "row"],
-                justify_content=["start", "space-between"],
+                spacing="6",
                 width="100%",
-                # top="0",
-                spacing="2",
-                align_items=["start", "start", "center"],
-                left="0",
-                # z_index="50",
-                padding="1rem",
-                background=rx.color("accent", 4),
-                border_radius="10px",
-                **props,
             ),
-            # Remove this in production
-            rx.icon_button(
-                rx.icon("eye"),
-                cursor="pointer",
-                on_click=cls.toggle,
-            ),
-            
-        )
+            size="2",
+            max_width="24em",  # Tamaño ajustado para que no sea tan ancho
+            width="50%",       # Ajusta el porcentaje del ancho
+            background_color="#4a90e2",  # Fondo azul
+            padding="2em",     # Espaciado interno
+            border_radius="1em",  # Bordes redondeados
+            shadow="5",       # Añade sombra para profundidad
+        ),
+        height="100vh",  # Asegura que el contenedor use toda la altura disponible
+        align_items="center",
+        justify_content="center",
+    )
 
-top_banner_signup = TopBannerSignup.create
 
 
 

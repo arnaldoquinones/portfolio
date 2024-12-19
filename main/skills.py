@@ -9,10 +9,10 @@ def skills() -> rx.Component:
             sidebar_bottom_profile(),  # Barra lateral
             rx.container(
                 rx.vstack(
-                    rx.heading("Skills Page", size="3xl", color="white"),
+                    rx.heading("Skills Page", size="3", color="white"),
                     rx.text(
                         "Let me show you my skills.",
-                        size="lg",
+                        size="5",
                         color="gray.200",
                         text_align="center",
                     ),
