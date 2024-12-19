@@ -242,19 +242,26 @@ def pop_up_message():
                         rx.input(placeholder="Last Name", name="last_name"),
                         rx.input(placeholder="Email", name="email"),
                         rx.input(placeholder="Write your message", name="message"),
-                        rx.hstack(
-                            rx.checkbox("Checked", name="check"),
-                            rx.switch("Switched", name="switch"),
-                        ),
+
                         rx.button("Submit", type="submit"),
                     ),
                     on_submit=MessageFormStateV2.handle_submit,  # Maneja el envío
                     reset_on_submit=True,
                 )
             ),
+            style={
+                "max-width": "200px",  # Establece un ancho máximo
+                "width": "auto",  # Ajusta el ancho al contenido
+                "padding": "1rem",  # Agrega un pequeño espacio alrededor del contenido
+            }
         ),
         open=MessageFormStateV2.is_popover_open,  # Vincula directamente el estado
     )
+
+
+
+
+
 
 
 
