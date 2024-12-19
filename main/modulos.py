@@ -4,9 +4,25 @@ from rxconfig import config
 # -------------------------
 # -- BARRA SIDEBAR  MENU --
 # -------------------------
+class MessageFormState(rx.State):
+    form_data: dict = {}
+    is_popover_open: bool = False  # Estado para controlar la visibilidad del pop-up
 
-def sidebar_item(text: str, icon: str, href: str) -> rx.Component:
+    @rx.event
+    def handle_submit(self, form_data: dict):
+        """Handle the form submit."""
+        self.form_data = form_data
+        self.is_popover_open = False  # Cierra el pop-up después de enviar el formulario
+
+    @rx.event
+    def toggle_popover(self):
+        """Toggle the popover visibility."""
+        self.is_popover_open = not self.is_popover_open
+
+def sidebar_item(text: str, icon: str, href: str = None, on_click: rx.EventHandler = None) -> rx.Component:
     """Crea un elemento del menú lateral."""
+    link_props = {"href": href} if href else {"on_click": on_click}
+
     return rx.link(
         rx.hstack(
             rx.icon(icon),
@@ -23,7 +39,7 @@ def sidebar_item(text: str, icon: str, href: str) -> rx.Component:
                 "border-radius": "0.5em",
             },
         ),
-        href=href,
+        **link_props,
         underline="none",
         weight="medium",
         width="100%",
@@ -33,13 +49,14 @@ def sidebar_item(text: str, icon: str, href: str) -> rx.Component:
 def sidebar_items() -> rx.Component:
     """Crea la lista principal de elementos del menú lateral."""
     return rx.vstack(
-        sidebar_item("About me", "layout-dashboard", "./about"),
-        sidebar_item("Proyects", "square-library", "./proyects"),
-        sidebar_item("Skills", "bar-chart-4", "./skills"),
-        sidebar_item("Messages", "mail", "./messages"),
+        sidebar_item("About me", "layout-dashboard", href="./about"),
+        sidebar_item("Proyects", "square-library", href="./proyects"),
+        sidebar_item("Skills", "bar-chart-4", href="./skills"),
+        sidebar_item("Messages", "mail", on_click=MessageFormState.toggle_popover),
         spacing="3",  # Espaciado ajustado
         width="12em",
     )
+
 
 
 def sidebar_bottom_profile() -> rx.Component:
@@ -199,44 +216,48 @@ class FormState(rx.State):
 
 
 def form_example():
-    return rx.popover.root(
-        rx.popover.trigger(
-            rx.button("Popover"),
-        ),
-        rx.popover.content(
-            rx.form(
-                rx.vstack(
-                    rx.heading("Send a message", size="1xl", color="white"),
-                    rx.input(
-                        placeholder="First Name",
-                        name="first_name",
-                    ),
-                    rx.input(
-                        placeholder="Last Name",
-                        name="last_name",
-                    ),
-                    rx.input(
-                        placeholder="email",
-                        name="email",
-                    ),
-                    rx.input(
-                        placeholder="write your message",
-                        name="message",
-                    ),
-                    rx.hstack(
-                        rx.checkbox("Checked", name="check"),
-                        rx.switch("Switched", name="switch"),
-                    ),
-                    rx.button("Submit", type="submit"),
-                ),
-                on_submit=FormState.handle_submit,
-                reset_on_submit=True,
+    return rx.cond(
+        MessageFormState.is_popover_open,  # Condición para mostrar el pop-up
+        rx.popover.root(
+            rx.popover.trigger(
+                rx.button("Popover"),
             ),
-            rx.divider(),
-            rx.heading("Results"),
-            rx.text(FormState.form_data.to_string()),
+            rx.popover.content(
+                rx.form(
+                    rx.vstack(
+                        rx.heading("Send a message", size="1xl", color="white"),
+                        rx.input(
+                            placeholder="First Name",
+                            name="first_name",
+                        ),
+                        rx.input(
+                            placeholder="Last Name",
+                            name="last_name",
+                        ),
+                        rx.input(
+                            placeholder="email",
+                            name="email",
+                        ),
+                        rx.input(
+                            placeholder="write your message",
+                            name="message",
+                        ),
+                        rx.hstack(
+                            rx.checkbox("Checked", name="check"),
+                            rx.switch("Switched", name="switch"),
+                        ),
+                        rx.button("Submit", type="submit"),
+                    ),
+                    on_submit=MessageFormState.handle_submit,
+                    reset_on_submit=True,
+                ),
+                rx.divider(),
+                rx.heading("Results"),
+                rx.text(MessageFormState.form_data.to_string()),
+            ),
         ),
     )
+
 
 
 
