@@ -252,15 +252,52 @@ def pop_up_message():
                     reset_on_submit=True,
                 )
             ),
-            rx.divider(),
-            rx.heading("Results"),
-            # Convertir form_data a texto
-            rx.text(str(MessageFormStateV2.form_data)),  # Conversión explícita
         ),
         open=MessageFormStateV2.is_popover_open,  # Vincula directamente el estado
     )
 
 
+
+# rx.input(
+#     placeholder="Email Address",
+#     type="email", 
+#     required=True,
+#     name="email"
+# )
+
+# reset_on_submit=True
+
+# rx.input(
+    placeholder="Email address",
+    border_color="#000000",
+    focus_border_color="#0000ff",
+    background="#ffffff",
+    width="100%",
+# )
+
+# class FormState(rx.State):
+#     form_data: dict = {}
+
+#     @rx.event
+#     def handle_submit(self, form_data: dict):
+#         """Handle the form submit."""
+#         self.form_data = form_data
+
+# def form_example():
+#     return rx.vstack(
+#         rx.form(
+#             rx.vstack(
+#                 rx.input(
+#                     placeholder="Email Address",
+#                     name="email",
+#                     type="email",
+#                 ),
+#                 rx.button("Submit", type="submit"),
+#             ),
+#             on_submit=FormState.handle_submit,
+#             reset_on_submit=True,
+#         ),
+#     )
 
 
 # -------------------
