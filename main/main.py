@@ -1,6 +1,6 @@
 import reflex as rx
 from rxconfig import config
-from .modulos import sidebar_bottom_profile, form_example
+from .modulos import sidebar_bottom_profile, pop_up_message
 from .about_me import about
 from .skills import skills
 from .proyects import proyects
@@ -48,7 +48,7 @@ def index() -> rx.Component:
                         width="400px",
                         text_align="justify",
                     ),
-                    form_example(),
+                    pop_up_message(),
                     rx.hstack(
                         rx.link(
                             rx.button("GitHub", border_radius="20px", width="120px"),

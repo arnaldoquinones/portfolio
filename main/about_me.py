@@ -1,6 +1,6 @@
 import reflex as rx
 from rxconfig import config
-from .modulos import sidebar_bottom_profile, form_example
+from .modulos import sidebar_bottom_profile, pop_up_message
 
 
 def about() -> rx.Component:
@@ -20,7 +20,7 @@ def about() -> rx.Component:
                     spacing="5",
                     justify="center",
                 ),
-                form_example(),
+                pop_up_message(),
                 padding="1em",
                 flex="1",
             ),

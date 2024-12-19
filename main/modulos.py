@@ -221,7 +221,7 @@ class MessageFormStateV2(rx.State):
         self.is_popover_open = False
 
 
-def form_example():
+def pop_up_message():
     return rx.cond(
         MessageFormState.is_popover_open,  # Condición para mostrar el pop-up
         rx.popover.root(
