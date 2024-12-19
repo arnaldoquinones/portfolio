@@ -1,6 +1,7 @@
 import reflex as rx
 from rxconfig import config
 
+
 # -------------------------
 # -- BARRA SIDEBAR  MENU --
 # -------------------------
