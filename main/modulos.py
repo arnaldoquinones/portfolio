@@ -234,13 +234,13 @@ def pop_up_message():
                         on_click=MessageFormStateV2.toggle_popover,  # Cierra el pop-up
                         style={
                             "position": "absolute",
-                            "top": "0.05",
+                            "top": "0",
                             "right": "0",
                             "background": "transparent",  # Hace el fondo transparente
                             "border": "transparent",  # Elimina el borde
                             "color": "white",  # Color blanco para la cruz
                             "padding": "0",  # Elimina el padding
-                            "font-size": "16px",  # Ajusta el tamaño del ícono
+                            "font-size": "1px",  # Ajusta el tamaño del ícono
                         }
                     )
                 ),
@@ -262,7 +262,8 @@ def pop_up_message():
                 "max-width": "200px",  # Establece un ancho máximo
                 "width": "auto",  # Ajusta el ancho al contenido
                 "padding": "1rem",  # Agrega un pequeño espacio alrededor del contenido
-                "position": "relative"  # Para asegurar que el ícono se posicione correctamente
+                "position": "relative",
+                "background": rx.color("accent", 3)  # Para asegurar que el ícono se posicione correctamente
             }
         ),
         open=MessageFormStateV2.is_popover_open,  # Vincula directamente el estado
