@@ -226,12 +226,22 @@ def pop_up_message():
     return rx.dialog.root(
         rx.dialog.content(
             rx.dialog.title(
-                rx.heading("Send a message", size="2", color="white"),
-                rx.dialog.close(
+                rx.heading("Send me a message", size="2", color="white"),
+                rx.dialog.close(  # Coloca el botón con el ícono de cierre en la esquina superior derecha
                     rx.button(
-                        "Close",
-                        size="3",
+                        rx.icon("x"),  # Usamos el ícono de la cruz
+                        size="1",  # Hace el ícono más pequeño
                         on_click=MessageFormStateV2.toggle_popover,  # Cierra el pop-up
+                        style={
+                            "position": "absolute",
+                            "top": "0.05",
+                            "right": "0",
+                            "background": "transparent",  # Hace el fondo transparente
+                            "border": "transparent",  # Elimina el borde
+                            "color": "white",  # Color blanco para la cruz
+                            "padding": "0",  # Elimina el padding
+                            "font-size": "16px",  # Ajusta el tamaño del ícono
+                        }
                     )
                 ),
             ),
@@ -242,7 +252,6 @@ def pop_up_message():
                         rx.input(placeholder="Last Name", name="last_name"),
                         rx.input(placeholder="Email", name="email"),
                         rx.input(placeholder="Write your message", name="message"),
-
                         rx.button("Submit", type="submit"),
                     ),
                     on_submit=MessageFormStateV2.handle_submit,  # Maneja el envío
@@ -253,10 +262,13 @@ def pop_up_message():
                 "max-width": "200px",  # Establece un ancho máximo
                 "width": "auto",  # Ajusta el ancho al contenido
                 "padding": "1rem",  # Agrega un pequeño espacio alrededor del contenido
+                "position": "relative"  # Para asegurar que el ícono se posicione correctamente
             }
         ),
         open=MessageFormStateV2.is_popover_open,  # Vincula directamente el estado
     )
+
+
 
 
 
