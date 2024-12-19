@@ -1,6 +1,6 @@
 import reflex as rx
 from rxconfig import config
-from .modulos import sidebar_bottom_profile  # Importa form_contact
+from .modulos import sidebar_bottom_profile, pop_up_message # Importa form_contact
 
 def skills() -> rx.Component:
     """Página Skills."""
@@ -17,6 +17,7 @@ def skills() -> rx.Component:
                         text_align="center",
                     ),
                 ),
+                pop_up_message(),
                 width="100%",  # Añadí esto para que el contenedor ocupe todo el ancho
             ),
             width="100%",

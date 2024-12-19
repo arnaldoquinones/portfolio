@@ -1,6 +1,6 @@
 import reflex as rx
 from rxconfig import config
-from .modulos import sidebar_bottom_profile, login_multiple_thirdparty
+from .modulos import sidebar_bottom_profile, pop_up_message
 
 
 def proyects() -> rx.Component:
@@ -23,7 +23,7 @@ def proyects() -> rx.Component:
                 padding="1em",
                 flex="1",
             ),
-            # login_multiple_thirdparty(),
+            pop_up_message(),# login_multiple_thirdparty(),
         ),
         min_height="100vh",
         width="100vw",
