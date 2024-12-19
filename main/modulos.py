@@ -284,33 +284,6 @@ def pop_up_message():
         open=MessageFormStateV2.is_popover_open,  # Vincula directamente el estado
     )
 
-
-
-# class FormState(rx.State):
-#     form_data: dict = {}
-
-#     @rx.event
-#     def handle_submit(self, form_data: dict):
-#         """Handle the form submit."""
-#         self.form_data = form_data
-
-# def form_example():
-#     return rx.vstack(
-#         rx.form(
-#             rx.vstack(
-#                 rx.input(
-#                     placeholder="Email Address",
-#                     name="email",
-#                     type="email",
-#                 ),
-#                 rx.button("Submit", type="submit"),
-#             ),
-#             on_submit=FormState.handle_submit,
-#             reset_on_submit=True,
-#         ),
-#     )
-
-
 # -------------------
 # -- LOG IN WINDOW --
 # -------------------
