@@ -201,14 +201,12 @@ def sidebar_bottom_profile() -> rx.Component:
         ),
     )
 
-
 # -------------------------
 # -- POP UP WINDOW EMAIL --
 # -------------------------
 
 class MessageFormStateV2(rx.State):
     is_popover_open: bool = False
-
 
     @rx.event
     def toggle_popover(self):
@@ -222,16 +220,17 @@ class MessageFormStateV2(rx.State):
 
 
 def pop_up_message():
-    return rx.cond(
-        MessageFormState.is_popover_open,  # Condición para mostrar el pop-up
-        rx.popover.root(
-            rx.popover.trigger(
-                rx.button("Popover"),
+    return rx.dialog.root(
+        rx.dialog.content(
+            rx.dialog.title(
+                rx.heading("Send a message", size="2", color="white"),
+                rx.dialog.close(
+                    rx.button("Close", size="3")
+                ),
             ),
-            rx.popover.content(
+            rx.dialog.description(
                 rx.form(
                     rx.vstack(
-                        rx.heading("Send a message", size="2", color="white"),
                         rx.input(
                             placeholder="First Name",
                             name="first_name",
@@ -262,7 +261,9 @@ def pop_up_message():
                 rx.text(MessageFormState.form_data.to_string()),
             ),
         ),
+        open=MessageFormStateV2.is_popover_open,  # Usamos el estado para controlar la visibilidad
     )
+
 
 # -------------------
 # -- LOG IN WINDOW --
