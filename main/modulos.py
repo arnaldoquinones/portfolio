@@ -1,56 +1,45 @@
 import reflex as rx
 from rxconfig import config
-import smtplib
-from email.mime.text import MIMEText
-from email.mime.multipart import MIMEMultipart
 
 # -------------------------
 # -- BARRA SIDEBAR  MENU --
 # -------------------------
 
-def sidebar_item(text: str, icon: str, action: str = None) -> rx.Component:
+def sidebar_item(text: str, icon: str, href: str) -> rx.Component:
     """Crea un elemento del menú lateral."""
-    # Define el evento on_click basado en la acción
-    if action == "messages":
-        on_click_event = lambda: State.set_show_popup(True)  # Abre el modal
-    else:
-        on_click_event = lambda: None  # Evento vacío válido
-
-    # Devuelve el componente del sidebar
-    return rx.hstack(
-        rx.icon(icon),
-        rx.text(text, size="4"),
-        width="90%",
-        padding_x="0.5rem",
-        padding_y="0.75rem",
-        align="center",
-        style={
-            "_hover": {
-                "bg": rx.color("accent", 4),
-                "color": rx.color("accent", 11),
+    return rx.link(
+        rx.hstack(
+            rx.icon(icon),
+            rx.text(text, size="4"),
+            width="90%",
+            padding_x="0.5rem",
+            padding_y="0.75rem",
+            align="center",
+            style={
+                "_hover": {
+                    "bg": rx.color("accent", 4),
+                    "color": rx.color("accent", 11),
+                },
+                "border-radius": "0.5em",
             },
-            "border-radius": "0.5em",
-        },
-        on_click=on_click_event,  # Usa el evento definido
+        ),
+        href=href,
+        underline="none",
+        weight="medium",
+        width="100%",
     )
-
-
-
 
 
 def sidebar_items() -> rx.Component:
     """Crea la lista principal de elementos del menú lateral."""
     return rx.vstack(
-        sidebar_item("About me", "layout-dashboard"),
-        sidebar_item("Proyects", "square-library"),
-        sidebar_item("Skills", "bar-chart-4"),
-        sidebar_item("Messages", "mail", action="messages"),  # Vincula al modal
-        spacing="3",
+        sidebar_item("About me", "layout-dashboard", "./about"),
+        sidebar_item("Proyects", "square-library", "./proyects"),
+        sidebar_item("Skills", "bar-chart-4", "./skills"),
+        sidebar_item("Messages", "mail", "./messages"),
+        spacing="3",  # Espaciado ajustado
         width="12em",
     )
-
-
-
 
 
 def sidebar_bottom_profile() -> rx.Component:
@@ -445,72 +434,6 @@ class TopBannerSignup(rx.ComponentState):
         )
 
 top_banner_signup = TopBannerSignup.create
-
-
-# ------------------
-# -- CONTACT FORM --
-# ------------------
-
-class State(rx.State):
-    show_popup: bool = False  # Controla la visibilidad del modal
-    email_response: str = ""  # Mensaje de respuesta tras enviar el email
-
-# 2. Función para enviar el correo electrónico
-def send_email(name, email, message):
-    sender_email = "tu_correo@gmail.com"  # Cambia esto por tu correo
-    sender_password = "tu_password"       # Cambia esto por tu contraseña
-    receiver_email = "destinatario@gmail.com"  # Correo donde recibes los mensajes
-
-    # Construye el mensaje del email
-    msg = MIMEMultipart()
-    msg["From"] = sender_email
-    msg["To"] = receiver_email
-    msg["Subject"] = f"Nuevo mensaje de {name}"
-
-    body = f"Nombre: {name}\nEmail: {email}\nMensaje:\n{message}"
-    msg.attach(MIMEText(body, "plain"))
-
-    try:
-        server = smtplib.SMTP("smtp.gmail.com", 587)
-        server.starttls()
-        server.login(sender_email, sender_password)
-        server.sendmail(sender_email, receiver_email, msg.as_string())
-        server.quit()
-        return "Mensaje enviado con éxito."
-    except Exception as e:
-        return f"Error al enviar el mensaje: {e}"
-
-# 3. Ventana pop-up con los inputs
-def contact_popup() -> rx.Component:
-    return rx.modal(
-        rx.modal_overlay(
-            rx.modal_content(
-                rx.modal_header("Envíanos un mensaje"),
-                rx.modal_body(
-                    rx.vstack(
-                        rx.input(placeholder="Nombre", id="name"),
-                        rx.input(placeholder="Email", id="email"),
-                        rx.text_area(placeholder="Mensaje", id="message", rows=5),
-                    ),
-                ),
-                rx.modal_footer(
-                    rx.button(
-                        "Enviar",
-                        on_click=lambda: rx.state.set(
-                            "email_response",
-                            send_email(
-                                rx.state.get("name"),
-                                rx.state.get("email"),
-                                rx.state.get("message"),
-                            ),
-                        ),
-                    ),
-                ),
-            )
-        ),
-        is_open=True,  # Para abrir el modal por defecto
-    )
-
 
 
 

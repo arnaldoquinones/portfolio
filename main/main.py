@@ -5,15 +5,9 @@ from .about_me import about
 from .skills import skills
 from .proyects import proyects
 
-
 class State(rx.State):
-    # Controla la visibilidad del modal
-    show_popup: bool = False  
-
-    @staticmethod
-    def set_show_popup(value: bool):
-        """Actualiza la visibilidad del modal."""
-        State.show_popup = value
+    """The main application state."""
+    pass
 
 
 def index() -> rx.Component:
@@ -44,6 +38,16 @@ def index() -> rx.Component:
                         text_align="center",
                         color="white",
                     ),  # Texto añadido aquí
+                    rx.flex(
+                        rx.text(
+                            """ Con más de 24 años de experiencia en el ambito bancario financiero, he desempeñado roles tanto en el área administrativa como en el comercial, específicamente como oficial de cuentas y negocios. Durante mi tiempo en el area administrativa adquirí habilidades significativas en la preparación de informes empleando herramientas de BDD, contribuyendo así a la eficiencia operativa y la toma de decisiones informadas."""
+                        ),
+                        justify="center",
+                        align="center",
+                        height="200px",
+                        width="400px",
+                        text_align="justify",
+                    ),
                     rx.hstack(
                         rx.link(
                             rx.button("GitHub", border_radius="20px", width="120px"),
@@ -59,7 +63,7 @@ def index() -> rx.Component:
                             "Messages",
                             border_radius="20px",
                             width="120px",
-                            on_click=lambda: State.set_show_popup(True),  # Abre el modal
+                            # on_click=lambda: State.set_show_popup(True),  # Abre el modal
                         ),
                         spacing="4",
                         align="center",
@@ -71,7 +75,6 @@ def index() -> rx.Component:
                 flex="1",
             ),
         ),
-        contact_popup(),  # Incluye el modal aquí
         min_height="100vh",
         width="100vw",
         background="linear-gradient(to bottom, #000066, #000000)",
@@ -81,29 +84,6 @@ def index() -> rx.Component:
 
 
 app = rx.App()
-
-def contact_popup() -> rx.Component:
-    """Ventana emergente de contacto."""
-    return rx.modal(
-        rx.modal_overlay(
-            rx.modal_content(
-                rx.modal_header("Envíanos un mensaje"),
-                rx.modal_body(
-                    rx.form(
-                        rx.input(placeholder="Nombre", id="name"),
-                        rx.input(placeholder="Email", id="email", type="email"),
-                        rx.text_area(placeholder="Mensaje", id="message"),
-                        rx.button("Enviar", type="submit"),
-                        on_submit=lambda form_data: print("Formulario enviado:", form_data),  # Cambia esto por tu lógica de envío
-                    )
-                ),
-                rx.modal_footer(
-                    rx.button("Cerrar", on_click=lambda: State.set_show_popup(False))
-                ),
-            )
-        ),
-        is_open=State.show_popup,  # Controla la visibilidad con el estado
-    )
 
 # ---------------------------
 # -- ENLACES A LAS PAGINAS --
