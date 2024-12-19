@@ -48,15 +48,15 @@ def sidebar_item(text: str, icon: str, href: str = None, on_click: rx.EventHandl
 
 
 def sidebar_items() -> rx.Component:
-    """Crea la lista principal de elementos del menú lateral."""
     return rx.vstack(
         sidebar_item("About me", "layout-dashboard", href="./about"),
-        sidebar_item("Proyects", "square-library", href="./proyects"),
+        sidebar_item("Projects", "square-library", href="./proyects"),
         sidebar_item("Skills", "bar-chart-4", href="./skills"),
-        sidebar_item("Messages", "mail", on_click=MessageFormState.toggle_popover),
-        spacing="3",  # Espaciado ajustado
+        sidebar_item("Messages", "mail", on_click=MessageFormStateV2.toggle_popover),  # Alterna el pop-up
+        spacing="3",
         width="12em",
     )
+
 
 
 
@@ -206,7 +206,8 @@ def sidebar_bottom_profile() -> rx.Component:
 # -------------------------
 
 class MessageFormStateV2(rx.State):
-    is_popover_open: bool = False
+    is_popover_open: bool = False  # Controla la visibilidad del pop-up
+    form_data: dict = {}          # Almacena los datos enviados del formulario
 
     @rx.event
     def toggle_popover(self):
@@ -214,9 +215,11 @@ class MessageFormStateV2(rx.State):
         self.is_popover_open = not self.is_popover_open
 
     @rx.event
-    def close_popover(self):
-        """Cierra el pop-up."""
-        self.is_popover_open = False
+    def handle_submit(self, form_data: dict):
+        """Maneja el envío del formulario y cierra el pop-up."""
+        self.form_data = form_data
+        self.is_popover_open = False  # Cierra el pop-up tras el envío
+
 
 
 def pop_up_message():
@@ -225,44 +228,39 @@ def pop_up_message():
             rx.dialog.title(
                 rx.heading("Send a message", size="2", color="white"),
                 rx.dialog.close(
-                    rx.button("Close", size="3")
+                    rx.button(
+                        "Close",
+                        size="3",
+                        on_click=MessageFormStateV2.toggle_popover,  # Cierra el pop-up
+                    )
                 ),
             ),
-            rx.dialog.description(
+            rx.dialog(
                 rx.form(
                     rx.vstack(
-                        rx.input(
-                            placeholder="First Name",
-                            name="first_name",
-                        ),
-                        rx.input(
-                            placeholder="Last Name",
-                            name="last_name",
-                        ),
-                        rx.input(
-                            placeholder="email",
-                            name="email",
-                        ),
-                        rx.input(
-                            placeholder="write your message",
-                            name="message",
-                        ),
+                        rx.input(placeholder="First Name", name="first_name"),
+                        rx.input(placeholder="Last Name", name="last_name"),
+                        rx.input(placeholder="Email", name="email"),
+                        rx.input(placeholder="Write your message", name="message"),
                         rx.hstack(
                             rx.checkbox("Checked", name="check"),
                             rx.switch("Switched", name="switch"),
                         ),
                         rx.button("Submit", type="submit"),
                     ),
-                    on_submit=MessageFormState.handle_submit,
+                    on_submit=MessageFormStateV2.handle_submit,  # Maneja el envío
                     reset_on_submit=True,
-                ),
-                rx.divider(),
-                rx.heading("Results"),
-                rx.text(MessageFormState.form_data.to_string()),
+                )
             ),
+            rx.divider(),
+            rx.heading("Results"),
+            # Convertir form_data a texto
+            rx.text(str(MessageFormStateV2.form_data)),  # Conversión explícita
         ),
-        open=MessageFormStateV2.is_popover_open,  # Usamos el estado para controlar la visibilidad
+        open=MessageFormStateV2.is_popover_open,  # Vincula directamente el estado
     )
+
+
 
 
 # -------------------
