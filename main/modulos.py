@@ -276,12 +276,14 @@ def pop_up_message():
                         rx.input(
                             placeholder="First Name", 
                             name="first_name",
+                            required=True,
                             style={
                                 "text-align": "left",
                                 "min_width": "270px"
                             },
                         ),
                         rx.input(placeholder="Last Name", name="last_name",
+                        required=True,
                         style={
                                 "text-align": "left",
                                 "min_width": "270px"
@@ -292,6 +294,7 @@ def pop_up_message():
                             rx.input(
                                 placeholder=MessageFormStateV2.email_error,
                                 name="email",
+                                required=True,
                                 style={"border": "1px solid red",
                                        "min_width": "270px"},
                             ),
@@ -310,6 +313,7 @@ def pop_up_message():
                                 "resize": "vertical",
                                 "overflow": "auto",
                                 "min_height": "160px",
+                                "max_height": "290px",
                                 "min_width": "270px",
                                 "white-space": "pre-wrap",
                                 "word-wrap": "break-word",
