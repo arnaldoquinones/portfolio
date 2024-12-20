@@ -50,15 +50,18 @@ def sidebar_item(text: str, icon: str, href: str = None, on_click: rx.EventHandl
 
 def sidebar_items() -> rx.Component:
     return rx.vstack(
-        sidebar_item("About me", "layout-dashboard", href="./about"),
+        sidebar_item("About me", "user", href="./about"),
         sidebar_item("Projects", "square-library", href="./proyects"),
         sidebar_item("Skills", "bar-chart-4", href="./skills"),
+        sidebar_item("Languages", "languages", href="./skills"),
+        sidebar_item("Chatbot", "bot-message-square", href="./skills"),
+
         sidebar_item("Messages", "mail", on_click=MessageFormStateV2.toggle_popover),  # Alterna el pop-up
         spacing="3",
         width="12em",
     )
 
-
+# bot-message-square
 
 
 def sidebar_bottom_profile() -> rx.Component:
