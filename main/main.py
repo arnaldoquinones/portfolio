@@ -51,16 +51,16 @@ def index() -> rx.Component:
                     pop_up_message(),
                     rx.hstack(
                         rx.link(
-                            rx.button("GitHub", border_radius="20px", width="120px"),
+                            rx.button(rx.icon(tag="github",size=18),"GitHub", border_radius="20px", width="120px"),
                             href="https://github.com/arnaldoquinones",
                             is_external=True,
                         ),
                         rx.link(
-                            rx.button("Linkedin", border_radius="20px", width="120px"),
+                            rx.button(rx.icon(tag="linkedin",size=18),"Linkedin", border_radius="20px", width="120px"),
                             href="https://www.linkedin.com/in/apquinones/",
                             is_external=True,
                         ),
-                        rx.button(
+                        rx.button(rx.icon(tag="mail",size=18),
                             "Messages",
                             border_radius="20px",
                             width="120px",
