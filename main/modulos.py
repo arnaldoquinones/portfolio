@@ -251,7 +251,7 @@ def pop_up_message():
     return rx.dialog.root(
         rx.dialog.content(
             rx.dialog.title(
-                rx.heading("Contact me", size="2", color="white"),
+                rx.heading("Contact me", size="4", color="white"),
                 rx.dialog.close(
                     rx.button(
                         rx.icon("x"),
@@ -266,61 +266,74 @@ def pop_up_message():
                             "color": "white",
                             "padding": "0",
                             "font-size": "1px",
-                        }
+                        },
                     )
                 ),
             ),
             rx.dialog(
                 rx.form(
                     rx.vstack(
-                        rx.input(placeholder="First Name", name="first_name"),
-                        rx.input(placeholder="Last Name", name="last_name"),
+                        rx.input(
+                            placeholder="First Name", 
+                            name="first_name",
+                            style={
+                                "text-align": "left",
+                                "min_width": "270px"
+                            },
+                        ),
+                        rx.input(placeholder="Last Name", name="last_name",
+                        style={
+                                "text-align": "left",
+                                "min_width": "270px"
+                            },
+                        ),
                         rx.cond(
                             MessageFormStateV2.email_error,  # Si hay error
                             rx.input(
                                 placeholder=MessageFormStateV2.email_error,
                                 name="email",
-                                style={
-                                    "border": "1px solid red",  # Muestra borde rojo
-                                },
+                                style={"border": "1px solid red",
+                                       "min_width": "270px"},
                             ),
                             rx.input(
                                 placeholder="Email",
                                 name="email",
-                                style={
-                                    "border": "1px solid gray",  # Estilo por defecto
-                                },
+                                style={"border": "1px solid gray",
+                                       "min_width": "270px"},
                             ),
                         ),
                         rx.text_area(
-                            placeholder="Write your message", 
+                            placeholder="Write your message",
                             name="message",
                             style={
                                 "text-align": "left",
                                 "resize": "vertical",
                                 "overflow": "auto",
-                                "min_height": "50px",
-                                "min_width": "170px",
+                                "min_height": "160px",
+                                "min_width": "270px",
                                 "white-space": "pre-wrap",
                                 "word-wrap": "break-word",
-                            }
+                            },
                         ),
                         rx.button("Submit", type="submit"),
                     ),
                     on_submit=MessageFormStateV2.handle_submit,
                     reset_on_submit=True,
-                )
+                ),
             ),
             style={
-                "max-width": "200px",
+                "max-width": "300px",
                 "width": "auto",
+                "min-height": "400px",
                 "padding": "1rem",
                 "position": "relative",
-                "background": rx.color("accent", 3)
-            }
+                "background": rx.color("accent", 3),
+            },
         ),
         open=MessageFormStateV2.is_popover_open,
     )
+
+
 
    
 # -------------------
