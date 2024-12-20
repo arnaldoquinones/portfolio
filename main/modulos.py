@@ -61,8 +61,6 @@ def sidebar_items() -> rx.Component:
         width="12em",
     )
 
-# bot-message-square
-
 
 def sidebar_bottom_profile() -> rx.Component:
     """Crea el perfil inferior de la barra lateral."""
