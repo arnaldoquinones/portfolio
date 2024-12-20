@@ -54,7 +54,7 @@ def sidebar_items() -> rx.Component:
         sidebar_item("Skills", "bar-chart-4", href="./skills"),
         sidebar_item("Messages", "mail", on_click=MessageFormStateV2.toggle_popover),  # Alterna el pop-up
         spacing="3",
-        width="12em",
+        width="30em",
     )
 
 
@@ -94,10 +94,11 @@ def sidebar_bottom_profile() -> rx.Component:
                     width="100%",
                 ),
                 sidebar_items(),
-                rx.divider(margin_y="2"),  # Ajustado a un valor válido
+                # Aquí mueve el divider dentro del contenedor flexible
                 rx.vstack(
+                    rx.divider(margin_y="2"),  # Divider ahora está dentro del vstack
                     rx.hstack(
-                            rx.vstack(
+                        rx.vstack(
                             rx.box(
                                 rx.text(
                                     "Made by",
@@ -125,6 +126,7 @@ def sidebar_bottom_profile() -> rx.Component:
                     ),
                     width="100%",
                     spacing="2",  # Espaciado entre elementos inferiores
+                    margin_top="auto",  # Empuja este contenido al fondo
                 ),
                 spacing="3",  # Espaciado general ajustado
                 padding_x="1em",
@@ -151,45 +153,48 @@ def sidebar_bottom_profile() -> rx.Component:
                                 width="100%",
                             ),
                             sidebar_items(),
-                            rx.divider(margin_y="2"),  # Ajustado a un valor válido
-                            rx.hstack(
-                                rx.icon_button(
-                                    rx.icon("user"),
-                                    size="3",
-                                    radius="full",
-                                ),
-                                rx.vstack(
-                                    rx.box(
-                                        rx.text(
-                                            "Made by",
-                                            size="3",
-                                            weight="bold",
+                            rx.vstack(
+                                rx.divider(margin_y="2"),  # Divider en la versión móvil también
+                                rx.hstack(
+                                    rx.icon_button(
+                                        rx.icon("user"),
+                                        size="3",
+                                        radius="full",
+                                    ),
+                                    rx.vstack(
+                                        rx.box(
+                                            rx.text(
+                                                "Made by",
+                                                size="3",
+                                                weight="bold",
+                                            ),
+                                            rx.link(
+                                                "Arnaldo Quiñones",
+                                                href="https://github.com/arnaldoquinones",
+                                                size="2",
+                                                weight="medium",
+                                                color="blue.500",
+                                                is_external=True,
+                                            ),
+                                            width="100%",
                                         ),
-                                        rx.link(
-                                            "Arnaldo Quiñones",
-                                            href="https://github.com/arnaldoquinones",
-                                            size="2",
-                                            weight="medium",
-                                            color="blue.500",
-                                            is_external=True,
-                                        ),
+                                        justify="start",
                                         width="100%",
                                     ),
+                                    padding_x="0.5rem",
+                                    align="center",
                                     justify="start",
                                     width="100%",
                                 ),
-                                padding_x="0.5rem",
-                                align="center",
-                                justify="start",
+                                spacing="2",  # Espaciado entre los elementos inferiores
                                 width="100%",
                             ),
-                            spacing="2",  # Espaciado entre los elementos inferiores
                             width="100%",
                         ),
                         top="auto",
                         right="auto",
                         height="100%",  # Ajusta el contenido a la altura completa de la pantalla
-                        width="20em",
+                        width="30em",
                         padding="1.5em",
                         bg=rx.color("accent", 2),
                     ),
@@ -200,6 +205,8 @@ def sidebar_bottom_profile() -> rx.Component:
             padding="1em",
         ),
     )
+
+
 
 
 # -------------------------
