@@ -131,8 +131,8 @@ def sidebar_bottom_profile() -> rx.Component:
                 padding_y="1.5em",
                 bg=rx.color("accent", 3),
                 align="start",
-                height="650px",
-                width="12em",
+                height="100vh",  # Ajusta la altura para que ocupe todo el alto de la página
+                width="12em",  # Mantén el ancho fijo si lo deseas
             ),
         ),
         rx.mobile_and_tablet(
@@ -188,7 +188,7 @@ def sidebar_bottom_profile() -> rx.Component:
                         ),
                         top="auto",
                         right="auto",
-                        height="100%",
+                        height="100%",  # Ajusta el contenido a la altura completa de la pantalla
                         width="20em",
                         padding="1.5em",
                         bg=rx.color("accent", 2),
@@ -200,6 +200,7 @@ def sidebar_bottom_profile() -> rx.Component:
             padding="1em",
         ),
     )
+
 
 # -------------------------
 # -- POP UP WINDOW EMAIL --
@@ -219,7 +220,6 @@ class MessageFormStateV2(rx.State):
         """Maneja el envío del formulario y cierra el pop-up."""
         self.form_data = form_data
         self.is_popover_open = False  # Cierra el pop-up tras el envío
-
 
 
 def pop_up_message():
@@ -283,7 +283,7 @@ def pop_up_message():
         ),
         open=MessageFormStateV2.is_popover_open,  # Vincula directamente el estado
     )
-
+   
 # -------------------
 # -- LOG IN WINDOW --
 # -------------------

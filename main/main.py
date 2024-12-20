@@ -14,7 +14,7 @@ def index() -> rx.Component:
     """Componente principal que renderiza la vista principal de la app."""
     return rx.box(
         rx.hstack(
-            sidebar_bottom_profile(),
+            sidebar_bottom_profile(),  # Esto se mantiene fijo
             rx.container(
                 rx.vstack(
                     rx.heading(
@@ -37,7 +37,7 @@ def index() -> rx.Component:
                         font_style="italic",
                         text_align="center",
                         color="white",
-                    ),  # Texto añadido aquí
+                    ),
                     rx.flex(
                         rx.text(
                             """ Con más de 24 años de experiencia en el ambito bancario financiero, he desempeñado roles tanto en el área administrativa como en el comercial, específicamente como oficial de cuentas y negocios. Durante mi tiempo en el area administrativa adquirí habilidades significativas en la preparación de informes empleando herramientas de BDD, contribuyendo así a la eficiencia operativa y la toma de decisiones informadas."""
@@ -64,7 +64,6 @@ def index() -> rx.Component:
                             "Messages",
                             border_radius="20px",
                             width="120px",
-                            # on_click=lambda: State.set_show_popup(True),  # Abre el modal
                         ),
                         spacing="4",
                         align="center",
@@ -73,14 +72,16 @@ def index() -> rx.Component:
                     justify="center",
                 ),
                 padding="1em",
-                flex="1",
+                flex="1",  # Ocupa el espacio restante
+                min_height="100vh",  # Esto asegura que ocupe el alto completo
             ),
         ),
-        min_height="100vh",
-        width="100vw",
+        min_height="100vh",  # Asegura que la caja ocupe el 100% del alto de la ventana
+        width="100vw",  # Asegura que la caja ocupe el 100% del ancho
         background="linear-gradient(to bottom, #000066, #000000)",
-        overflow_y="auto",
+        overflow_y="auto",  # Habilita el scroll vertical si es necesario
     )
+
 
 
 
