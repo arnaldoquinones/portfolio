@@ -1,5 +1,6 @@
 import reflex as rx
 from rxconfig import config
+import re  # Para usar expresiones regulares en la validación del email
 
 
 # -------------------------
@@ -216,6 +217,7 @@ def sidebar_bottom_profile() -> rx.Component:
 class MessageFormStateV2(rx.State):
     is_popover_open: bool = False  # Controla la visibilidad del pop-up
     form_data: dict = {}          # Almacena los datos enviados del formulario
+    email_error: str = ""         # Mensaje de error en el campo de email
 
     @rx.event
     def toggle_popover(self):
@@ -223,8 +225,23 @@ class MessageFormStateV2(rx.State):
         self.is_popover_open = not self.is_popover_open
 
     @rx.event
+    def validate_email(self, email: str) -> bool:
+        """Valida el formato del email."""
+        pattern = r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+        return re.match(pattern, email) is not None
+
+    @rx.event
     def handle_submit(self, form_data: dict):
-        """Maneja el envío del formulario y cierra el pop-up."""
+        """Maneja el envío del formulario."""
+        email = form_data.get("email", "").strip()
+
+        # Verifica si el email es válido
+        if not self.validate_email(email):
+            self.email_error = "Please enter a valid email address."
+            return  # Detiene el envío si hay un error
+
+        # Limpia el error y guarda los datos
+        self.email_error = ""
         self.form_data = form_data
         self.is_popover_open = False  # Cierra el pop-up tras el envío
 
@@ -234,21 +251,21 @@ def pop_up_message():
         rx.dialog.content(
             rx.dialog.title(
                 rx.heading("Contact me", size="2", color="white"),
-                rx.dialog.close(  # Coloca el botón con el ícono de cierre en la esquina superior derecha
+                rx.dialog.close(
                     rx.button(
-                        rx.icon("x"),  # Usamos el ícono de la cruz
-                        size="1",  # Hace el ícono más pequeño
-                        on_click=MessageFormStateV2.toggle_popover,  # Cierra el pop-up
+                        rx.icon("x"),
+                        size="1",
+                        on_click=MessageFormStateV2.toggle_popover,
                         style={
                             "position": "absolute",
                             "top": "0",
                             "right": "0",
-                            "background": "transparent",  # Hace el fondo transparente
-                            "border": "transparent",  # Elimina el borde
-                            "color": "white",  # Color blanco para la cruz
-                            "padding": "0",  # Elimina el padding
-                            "font-size": "1px",  # Ajusta el tamaño del ícono
-                            }
+                            "background": "transparent",
+                            "border": "transparent",
+                            "color": "white",
+                            "padding": "0",
+                            "font-size": "1px",
+                        }
                     )
                 ),
             ),
@@ -257,39 +274,53 @@ def pop_up_message():
                     rx.vstack(
                         rx.input(placeholder="First Name", name="first_name"),
                         rx.input(placeholder="Last Name", name="last_name"),
-                        rx.input(placeholder="Email", name="email"),
+                        rx.cond(
+                            MessageFormStateV2.email_error,  # Si hay error
+                            rx.input(
+                                placeholder=MessageFormStateV2.email_error,
+                                name="email",
+                                style={
+                                    "border": "1px solid red",  # Muestra borde rojo
+                                },
+                            ),
+                            rx.input(
+                                placeholder="Email",
+                                name="email",
+                                style={
+                                    "border": "1px solid gray",  # Estilo por defecto
+                                },
+                            ),
+                        ),
                         rx.text_area(
                             placeholder="Write your message", 
                             name="message",
-                            style={  # Estilos de redimensionado para el input de mensaje
-                                # "padding-top": "10px",  # Ajusta la distancia desde la parte superior
-                                # "padding-left": "10px",  # Ajusta la distancia desde el lado izquierdo
-                                "text-align": "left",  # Asegura que el texto esté alineado a la izquierda
-                                # "height": "150px", 
-                                "resize": "vertical",  # Habilita redimensionamiento en ambas direcciones
-                                "overflow": "auto",  # Activa el desplazamiento si el contenido excede el tamaño
-                                "min_height": "50px",  # Altura mínima para el input
-                                "min_width": "170px",  # Ancho mínimo para el input
-                                "white-space": "pre-wrap",  # Permite saltos de línea automáticamente
-                                "word-wrap": "break-word",  # Asegura que las palabras largas se ajusten
+                            style={
+                                "text-align": "left",
+                                "resize": "vertical",
+                                "overflow": "auto",
+                                "min_height": "50px",
+                                "min_width": "170px",
+                                "white-space": "pre-wrap",
+                                "word-wrap": "break-word",
                             }
                         ),
                         rx.button("Submit", type="submit"),
                     ),
-                    on_submit=MessageFormStateV2.handle_submit,  # Maneja el envío
+                    on_submit=MessageFormStateV2.handle_submit,
                     reset_on_submit=True,
                 )
             ),
             style={
-                "max-width": "200px",  # Establece un ancho máximo
-                "width": "auto",  # Ajusta el ancho al contenido
-                "padding": "1rem",  # Agrega un pequeño espacio alrededor del contenido
+                "max-width": "200px",
+                "width": "auto",
+                "padding": "1rem",
                 "position": "relative",
-                "background": rx.color("accent", 3)  # Para asegurar que el ícono se posicione correctamente
+                "background": rx.color("accent", 3)
             }
         ),
-        open=MessageFormStateV2.is_popover_open,  # Vincula directamente el estado
+        open=MessageFormStateV2.is_popover_open,
     )
+
    
 # -------------------
 # -- LOG IN WINDOW --
