@@ -54,7 +54,7 @@ def sidebar_items() -> rx.Component:
         sidebar_item("Skills", "bar-chart-4", href="./skills"),
         sidebar_item("Messages", "mail", on_click=MessageFormStateV2.toggle_popover),  # Alterna el pop-up
         spacing="3",
-        width="30em",
+        width="12em",
     )
 
 
@@ -194,7 +194,7 @@ def sidebar_bottom_profile() -> rx.Component:
                         top="auto",
                         right="auto",
                         height="100%",  # Ajusta el contenido a la altura completa de la pantalla
-                        width="30em",
+                        width="20em",
                         padding="1.5em",
                         bg=rx.color("accent", 2),
                     ),
