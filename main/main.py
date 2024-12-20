@@ -82,9 +82,9 @@ def index() -> rx.Component:
         overflow_y="auto",
     )
 
-
-
 app = rx.App()
+
+
 
 # ---------------------------
 # -- ENLACES A LAS PAGINAS --

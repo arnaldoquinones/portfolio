@@ -8,43 +8,6 @@ from email.mime.multipart import MIMEMultipart
 # -------------------------
 # -- BARRA SIDEBAR  MENU --
 # -------------------------
-
-def send_email(form_data: dict):
-    """
-    Envía un correo electrónico utilizando los datos del formulario.
-    """
-    sender_email = "tu_email@example.com"  # Cambia esto a tu correo
-    receiver_email = "destinatario@example.com"  # Correo que recibirá los mensajes
-    sender_password = "tu_contraseña"  # Contraseña del remitente
-
-    # Crear el contenido del correo
-    subject = "Nuevo mensaje de contacto desde tu sitio web"
-    body = f"""
-    Has recibido un nuevo mensaje de contacto:
-    
-    Nombre: {form_data.get('first_name')} {form_data.get('last_name')}
-    Email: {form_data.get('email')}
-    Mensaje:
-    {form_data.get('message')}
-    """
-
-    # Configurar el mensaje
-    msg = MIMEMultipart()
-    msg["From"] = sender_email
-    msg["To"] = receiver_email
-    msg["Subject"] = subject
-    msg.attach(MIMEText(body, "plain"))
-
-    # Enviar el correo
-    try:
-        with smtplib.SMTP("smtp.gmail.com", 587) as server:  # Usando SMTP de Gmail
-            server.starttls()  # Inicia conexión segura
-            server.login(sender_email, sender_password)  # Inicia sesión
-            server.send_message(msg)  # Envía el correo
-            print("Correo enviado exitosamente.")
-    except Exception as e:
-        print(f"Error al enviar el correo: {e}")
-
 class MessageFormState(rx.State):
     form_data: dict = {}
     is_popover_open: bool = False  # Estado para controlar la visibilidad del pop-up
@@ -53,7 +16,6 @@ class MessageFormState(rx.State):
     def handle_submit(self, form_data: dict):
         """Handle the form submit."""
         self.form_data = form_data
-        send_email(form_data)
         self.is_popover_open = False  # Cierra el pop-up después de enviar el formulario
 
     @rx.event
@@ -252,6 +214,51 @@ def sidebar_bottom_profile() -> rx.Component:
 # -------------------------
 # -- POP UP WINDOW EMAIL --
 # -------------------------
+import reflex as rx
+from rxconfig import config
+import re  # Para usar expresiones regulares en la validación del email
+import smtplib
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
+
+def send_email(form_data: dict):
+    """
+    Envía un correo electrónico utilizando los datos del formulario.
+    """
+    sender_email = "maildeprueba@gmail.com"  # Cambia esto a tu correo
+    receiver_email = "maildeprueba@gmail.com"  # Correo que recibirá los mensajes
+    sender_password = "xxxxxxx"  # Contraseña del remitente
+
+    # Crear el contenido del correo
+    subject = "Nuevo mensaje de contacto desde tu sitio web"
+    body = f"""
+    Has recibido un nuevo mensaje de contacto:
+    
+    Nombre: {form_data.get('first_name')} {form_data.get('last_name')}
+    Email: {form_data.get('email')}
+    Mensaje:
+    {form_data.get('message')}
+    """
+
+    # Configurar el mensaje
+    msg = MIMEMultipart()
+    msg["From"] = sender_email
+    msg["To"] = receiver_email
+    msg["Subject"] = subject
+    msg.attach(MIMEText(body, "plain"))
+
+    # Enviar el correo
+    try:
+        with smtplib.SMTP("smtp.gmail.com", 587) as server:  # Usando SMTP de Gmail
+            server.starttls()  # Inicia conexión segura
+            server.login(sender_email, sender_password)  # Inicia sesión
+            server.send_message(msg)  # Envía el correo
+            print("Correo enviado exitosamente.")
+    except Exception as e:
+        print(f"Error al enviar el correo: {e}")
+
+
+
 class MessageFormStateV2(rx.State):
     is_popover_open: bool = False  # Controla la visibilidad del pop-up
     form_data: dict = {}          # Almacena los datos enviados del formulario
@@ -284,6 +291,7 @@ class MessageFormStateV2(rx.State):
         self.form_data = form_data
         self.is_popover_open = False  # Cierra el pop-up tras el envío
         print("Datos guardados correctamente:", self.form_data)
+        send_email(form_data)
 
 def pop_up_message():
     return rx.dialog.root(
@@ -378,6 +386,58 @@ def pop_up_message():
         ),
         open=MessageFormStateV2.is_popover_open,
     )
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
