@@ -4,3 +4,5 @@ __pycache__/
 *.py[cod]
 assets/external/
 vitrubio.txt
+modelofinal.ipynb
+recomendacion_final.ipynb
