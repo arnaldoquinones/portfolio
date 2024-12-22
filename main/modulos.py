@@ -229,9 +229,9 @@ def send_email(form_data: dict):
     """
     Envía un correo electrónico utilizando los datos del formulario.
     """
-    sender_email = os.getenv("EMAIL_SENDER")  # Cambia esto a tu correo
-    receiver_email = os.getenv("EMAIL_RECEIVER")  # Correo que recibirá los mensajes
-    sender_password = os.getenv("EMAIL_PASSWORD")  # Contraseña del remitente
+    sender_email = "arnaldpqportfolio@gmail.com"  # Cambia esto a tu correo
+    receiver_email = "arnaldpqportfolio@gmail.com"  # Correo que recibirá los mensajes
+    sender_password = "fluwhmgdrjqiskmm"  # Contraseña del remitente
 
     # Crear el contenido del correo
     subject = "Nuevo mensaje de contacto desde tu sitio web"
@@ -258,20 +258,23 @@ def send_email(form_data: dict):
             server.login(sender_email, sender_password)  # Inicia sesión
             server.send_message(msg)  # Envía el correo
             print("Correo enviado exitosamente.")
+            return True
     except Exception as e:
         print(f"Error al enviar el correo: {e}")
-
-
+        return False
 
 class MessageFormStateV2(rx.State):
     is_popover_open: bool = False  # Controla la visibilidad del pop-up
     form_data: dict = {}          # Almacena los datos enviados del formulario
     email_error: str = ""         # Mensaje de error en el campo de email
+    submit_status: str = ""       # Para rastrear el estado del envío
+    is_submitting: bool = False   # Para controlar el estado durante el envío
 
     @rx.event
     def toggle_popover(self):
         """Alterna la visibilidad del pop-up."""
         self.is_popover_open = not self.is_popover_open
+        self.submit_status = ""  # Resetear el estado del envío al abrir/cerrar
 
     @rx.event
     def validate_email(self, email: str) -> bool:
@@ -280,22 +283,28 @@ class MessageFormStateV2(rx.State):
         return re.match(pattern, email) is not None
 
     @rx.event
-    def handle_submit(self, form_data: dict):
+    async def handle_submit(self, form_data: dict):
         """Maneja el envío del formulario."""
-        print("Formulario recibido:", form_data)  # Depuración
+        print("Formulario recibido:", form_data)
         email = form_data.get("email", "").strip()
 
-        # Verifica si el email es válido
         if not self.validate_email(email):
             self.email_error = "Please enter a valid email address."
-            return  # Detiene el envío si hay un error
+            return
 
-        # Limpia el error y guarda los datos
         self.email_error = ""
         self.form_data = form_data
-        self.is_popover_open = False  # Cierra el pop-up tras el envío
-        print("Datos guardados correctamente:", self.form_data)
-        send_email(form_data)
+        self.is_submitting = True
+
+        # Intentar enviar el email
+        if send_email(form_data):
+            self.submit_status = "success"
+            await rx.sleep(2)  # Esperar 2 segundos antes de cerrar
+            self.is_popover_open = False
+        else:
+            self.submit_status = "error"
+        
+        self.is_submitting = False
 
 def pop_up_message():
     return rx.dialog.root(
@@ -373,7 +382,31 @@ def pop_up_message():
                                 "word-wrap": "break-word",
                             },
                         ),
-                        rx.button("Submit", type="submit"),
+                        rx.hstack(
+                            rx.button(
+                                "Submit", 
+                                type="submit",
+                                is_loading=MessageFormStateV2.is_submitting,
+                            ),
+                            rx.cond(
+                                MessageFormStateV2.submit_status == "success",
+                                rx.text(
+                                    "Message sent successfully!",
+                                    color="green",
+                                    font_size="sm",
+                                ),
+                            ),
+                            rx.cond(
+                                MessageFormStateV2.submit_status == "error",
+                                rx.text(
+                                    "Something went wrong, try later.",
+                                    color="red",
+                                    font_size="sm",
+                                ),
+                            ),
+                            align_items="center",
+                            spacing="3",
+                        ),
                     ),
                     on_submit=MessageFormStateV2.handle_submit,
                     reset_on_submit=True,
@@ -390,11 +423,6 @@ def pop_up_message():
         ),
         open=MessageFormStateV2.is_popover_open,
     )
-
-
-
-
-
 
 
 

@@ -5,20 +5,13 @@ from .about_me import about
 from .skills import skills
 from .proyects import proyects
 
+class State(rx.State):
+    pass
+    
+
 intro_texto_castellano = """Con más de 24 años de experiencia en el ambito bancario financiero, he desempeñado roles tanto en el área administrativa como en el comercial, específicamente como oficial de cuentas y negocios. Durante mi tiempo en el area administrativa adquirí habilidades significativas en la preparación de informes empleando herramientas de BDD, contribuyendo así a la eficiencia operativa y la toma de decisiones informadas."""
 
 intro_texto_ingles = """With more than 24 years of experience in the financial banking sector, I have held roles in both the administrative and commercial areas, specifically as an account and business officer. During my time in the administrative area, I acquired significant skills in the preparation of reports using DDB tools, thus contributing to operational efficiency and informed decision-making."""
-
-class State(rx.State):
-    def play_sound(self):
-        # Trigger audio playback when button is clicked
-        return rx.audio(
-            src="/button_click.mp3",
-            autoplay=True,
-        )
-    
-
-
 
 def index() -> rx.Component:
     """Componente principal que renderiza la vista principal de la app."""
