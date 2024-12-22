@@ -34,9 +34,11 @@ import requests
 
 import openai
 
+load_dotenv()
+
 # Configuración de la API
-openai.api_key = os.getenv("OPENAI_API_KEY")
-openai.api_base = "https://api.goose.ai/v1"
+openai.api_key = os.getenv("API_KEY")
+openai.api_base = os.getenv("URL_API_AI")
 
 
 

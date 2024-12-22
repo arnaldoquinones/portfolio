@@ -220,14 +220,18 @@ import re  # Para usar expresiones regulares en la validación del email
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
 
 def send_email(form_data: dict):
     """
     Envía un correo electrónico utilizando los datos del formulario.
     """
-    sender_email = "maildeprueba@gmail.com"  # Cambia esto a tu correo
-    receiver_email = "maildeprueba@gmail.com"  # Correo que recibirá los mensajes
-    sender_password = "xxxxxxx"  # Contraseña del remitente
+    sender_email = os.getenv("EMAIL_SENDER")  # Cambia esto a tu correo
+    receiver_email = os.getenv("EMAIL_RECEIVER")  # Correo que recibirá los mensajes
+    sender_password = os.getenv("EMAIL_PASSWORD")  # Contraseña del remitente
 
     # Crear el contenido del correo
     subject = "Nuevo mensaje de contacto desde tu sitio web"
