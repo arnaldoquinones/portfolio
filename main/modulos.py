@@ -231,7 +231,7 @@ def send_email(form_data: dict):
     """
     sender_email = "arnaldpqportfolio@gmail.com"  # Cambia esto a tu correo
     receiver_email = "arnaldpqportfolio@gmail.com"  # Correo que recibirá los mensajes
-    sender_password = "fluwhmgdrjqiskmm"  # Contraseña del remitente
+    sender_password = "xxx"  # Contraseña del remitente
 
     # Crear el contenido del correo
     subject = "Nuevo mensaje de contacto desde tu sitio web"
