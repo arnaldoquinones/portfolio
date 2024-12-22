@@ -1,6 +1,7 @@
 import reflex as rx
 import os
 import openai
+from dotenv import load_dotenv
 
 class State(rx.State):
     # The current question being asked
