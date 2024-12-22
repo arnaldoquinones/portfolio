@@ -375,8 +375,8 @@ def pop_up_message():
                                 "text-align": "left",
                                 "resize": "vertical",
                                 "overflow": "auto",
-                                "min_height": "160px",
-                                "max_height": "290px",
+                                "min_height": "130px",
+                                "max_height": "270px",
                                 "min_width": "270px",
                                 "white-space": "pre-wrap",
                                 "word-wrap": "break-word",
@@ -401,7 +401,7 @@ def pop_up_message():
                                 rx.text(
                                     "Something went wrong, try later.",
                                     color="red",
-                                    font_size="sm",
+                                    font_size="13px",
                                 ),
                             ),
                             align_items="center",
@@ -415,7 +415,8 @@ def pop_up_message():
             style={
                 "max-width": "300px",
                 "width": "auto",
-                "min-height": "400px",
+                "min-height": "250px",
+                # "max-height": "350px"
                 "padding": "1rem",
                 "position": "relative",
                 "background": rx.color("accent", 3),

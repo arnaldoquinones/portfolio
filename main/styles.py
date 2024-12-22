@@ -28,38 +28,38 @@ import os
 #                     await asyncio.sleep(0.09)
 #                     self.landingpage_text = self.landingpage_text[:-1]
 #                     yield
+if __name__ == "__main__":
+
+    import requests
+
+    import openai
+
+    load_dotenv()
+
+    # Configuración de la API
+    openai.api_key = os.getenv("API_KEY")
+    openai.api_base = os.getenv("URL_API_AI")
 
 
-import requests
 
-import openai
+    def generar_respuesta(prompt):
+        try:
+            # Crear una solicitud de completado
+            completion = openai.Completion.create(
+                engine="gpt-j-6b",  # Cambiamos 'model' por 'engine'
+                prompt=prompt,
+                max_tokens=120,
+                temperature=0.3,    # Añadimos temperature para controlar la creatividad
+                stop=None          # Podemos especificar tokens de parada si lo deseamos
+            )
 
-load_dotenv()
+            print("Respuesta generada:")
+            print(completion.choices[0].text.strip())
 
-# Configuración de la API
-openai.api_key = os.getenv("API_KEY")
-openai.api_base = os.getenv("URL_API_AI")
+        except Exception as e:
+            print(f"Error: {e}")
 
-
-
-def generar_respuesta(prompt):
-    try:
-        # Crear una solicitud de completado
-        completion = openai.Completion.create(
-            engine="gpt-j-6b",  # Cambiamos 'model' por 'engine'
-            prompt=prompt,
-            max_tokens=120,
-            temperature=0.3,    # Añadimos temperature para controlar la creatividad
-            stop=None          # Podemos especificar tokens de parada si lo deseamos
-        )
-
-        print("Respuesta generada:")
-        print(completion.choices[0].text.strip())
-
-    except Exception as e:
-        print(f"Error: {e}")
-
-# Solicitar el prompt al usuario
-mi_prompt = input("Introduce tu prompt: ")
-generar_respuesta(mi_prompt)
+    # Solicitar el prompt al usuario
+    mi_prompt = input("Introduce tu prompt: ")
+    generar_respuesta(mi_prompt)
 
