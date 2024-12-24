@@ -49,7 +49,7 @@ if __name__ == "__main__":
                 engine="gpt-j-6b",  # Cambiamos 'model' por 'engine'
                 prompt=prompt,
                 max_tokens=120,
-                temperature=0.3,    # Añadimos temperature para controlar la creatividad
+                temperature=0.9,    # Añadimos temperature para controlar la creatividad
                 stop=None          # Podemos especificar tokens de parada si lo deseamos
             )
 
@@ -57,7 +57,7 @@ if __name__ == "__main__":
             print(completion.choices[0].text.strip())
 
         except Exception as e:
-            print(f"Error: {e}")
+            print(f"Error: {e}")           
 
     # Solicitar el prompt al usuario
     mi_prompt = input("Introduce tu prompt: ")

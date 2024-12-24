@@ -19,14 +19,14 @@ def skills() -> rx.Component:
                         text_align="center",
                     ),
                     rx.container(
-                        chat(),  # Aquí integras el chatbot
-                        padding="1em",
-                        border_radius="10px",
-                        background="white",
-                        box_shadow="0 4px 6px rgba(0, 0, 0, 0.1)",
-                        margin_top="2em",
-                        width="80%",  # Ajusta el ancho según prefieras
-                        align_self="center",  # Centra horizontalmente dentro del vstack
+                        # chat(),  # Aquí integras el chatbot
+                        # padding="1em",
+                        # border_radius="10px",
+                        # background="white",
+                        # box_shadow="0 4px 6px rgba(0, 0, 0, 0.1)",
+                        # margin_top="2em",
+                        # width="80%",  # Ajusta el ancho según prefieras
+                        # align_self="center",  # Centra horizontalmente dentro del vstack
                     ),
                     spacing="5",  # Espaciado entre elementos del vstack
                     justify="center",  # Centra el contenido verticalmente
