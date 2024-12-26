@@ -1,7 +1,7 @@
 import reflex as rx
 from rxconfig import config
 from .modulos import sidebar_bottom_profile, pop_up_message
-from .chatbot import chat  # Importa el componente del chatbot
+# from .chatbot import chat  # Importa el componente del chatbot
 
 
 def skills() -> rx.Component:
