@@ -9,4 +9,4 @@ recomendacion_final.ipynb
 .env
 pepe.py
 openai_billing.py
-/rasa_env
+/myenv
