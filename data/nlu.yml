@@ -6,86 +6,112 @@ nlu:
     - hey
     - hello
     - hi
-    - hello there
+    - what's up?
+    - howdy
+    - hi there
+    - hey there
+    - yo
     - good morning
     - good evening
-    - moin
-    - hey there
-    - let's go
-    - hey dude
-    - goodmorning
-    - goodevening
     - good afternoon
+    - sup?
+    - hola
+    - greetings
+    - hiya
+    - morning
 
 - intent: goodbye
   examples: |
-    - cu
-    - good by
-    - cee you later
-    - good night
     - bye
     - goodbye
-    - have a nice day
-    - see you around
-    - bye bye
     - see you later
+    - take care
+    - catch you later
+    - bye bye
+    - have a good one
+    - I'm off
+    - peace out
+    - see ya
+    - later
 
-- intent: affirm
+- intent: ask_weather
   examples: |
-    - yes
-    - y
-    - indeed
-    - of course
-    - that sounds good
-    - correct
+    - what's the weather like?
+    - how's the weather?
+    - is it sunny today?
+    - is it raining?
+    - do I need an umbrella?
+    - is it hot outside?
+    - tell me about the weather
+    - what's the forecast?
+    - is it cold today?
 
-- intent: deny
+- intent: ask_joke
   examples: |
-    - no
-    - n
-    - never
-    - I don't think so
-    - don't like that
-    - no way
-    - not really
+    - tell me a joke
+    - make me laugh
+    - do you know any jokes?
+    - entertain me with a joke
+    - give me something funny
+    - I need a joke
+    - can you joke?
 
-- intent: mood_great
+- intent: ask_time
   examples: |
-    - perfect
-    - great
-    - amazing
-    - feeling like a king
-    - wonderful
-    - I am feeling very good
-    - I am great
-    - I am amazing
-    - I am going to save the world
-    - super stoked
-    - extremely good
-    - so so perfect
-    - so good
-    - so perfect
+    - what time is it?
+    - tell me the time
+    - can you give me the time?
+    - do you know what time it is?
+    - time please
+    - what's the current time?
+    - is it late?
 
-- intent: mood_unhappy
+- intent: mood_happy
   examples: |
-    - my day was horrible
-    - I am sad
-    - I don't feel very well
-    - I am disappointed
-    - super sad
-    - I'm so sad
-    - sad
-    - very sad
-    - unhappy
-    - not good
-    - not very good
-    - extremly sad
-    - so saad
-    - so sad
+    - I'm feeling great
+    - I'm so happy
+    - I'm doing well
+    - I'm in a great mood
+    - life is good
+    - I'm feeling awesome
+    - today is amazing
+    - everything is going well
+
+- intent: mood_sad
+  examples: |
+    - I'm feeling down
+    - I'm sad
+    - not doing great
+    - life is tough
+    - I'm not feeling well
+    - I'm in a bad mood
+    - I'm upset
+    - feeling low
+    - I've had a bad day
 
 - intent: bot_challenge
   examples: |
     - are you a bot?
-    - are you a human?
-    - am I talking to a bot?
-    - am I talking to a human?
+    - are you real?
+    - who made you?
+    - what are you?
+    - are you human?
+    - how do you work?
+    - are you alive?
+
+- intent: ask_advice
+  examples: |
+    - I need advice
+    - can you help me with something?
+    - what should I do about this?
+    - give me some advice
+    - I need help deciding
+
+- intent: ask_fact
+  examples: |
+    - tell me something interesting
+    - do you know any fun facts?
+    - give me a random fact
+    - what's a cool fact you know?
+    - surprise me with a fact
+

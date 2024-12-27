@@ -3,28 +3,65 @@ version: "3.1"
 intents:
   - greet
   - goodbye
-  - affirm
-  - deny
-  - mood_great
-  - mood_unhappy
+  - ask_weather
+  - ask_joke
+  - ask_time
+  - mood_happy
+  - mood_sad
   - bot_challenge
+  - ask_advice
+  - ask_fact
 
 responses:
   utter_greet:
-  - text: "Hey! How are you?"
-
-  utter_cheer_up:
-  - text: "Here is something to cheer you up:"
-    image: "https://i.imgur.com/nGF1K8f.jpg"
-
-  utter_did_that_help:
-  - text: "Did that help you?"
-
-  utter_happy:
-  - text: "Great, carry on!"
+  - text: "Hey! How's it going?"
+  - text: "Hi there! How can I assist you today?"
+  - text: "Hello! What’s up?"
 
   utter_goodbye:
-  - text: "Bye"
+  - text: "Goodbye! Have a wonderful day!"
+  - text: "See you later! Take care!"
+  - text: "Bye! Let’s chat again soon."
+
+  utter_ask_weather:
+  - text: "I wish I could check the weather, but I recommend trying a weather app!"
+  - text: "Weather’s unpredictable, but you can check online!"
+  - text: "I’m not sure about the weather, but I hope it’s nice where you are."
+
+  utter_ask_joke:
+  - text: "Why don’t scientists trust atoms? Because they make up everything!"
+  - text: "What do you call fake spaghetti? An impasta!"
+  - text: "I told my computer a joke, but it just didn’t get the bytes."
+
+  utter_ask_time:
+  - text: "I don’t have a clock, but time flies when you’re having fun!"
+  - text: "It’s always time for a good conversation with me!"
+  - text: "Time is a human construct, but maybe you have a watch?"
+
+  utter_mood_happy:
+  - text: "That’s fantastic! Keep spreading the positivity!"
+  - text: "I’m glad to hear that. What’s making you happy today?"
+  - text: "Great to hear! Let’s keep the good vibes going!"
+
+  utter_mood_sad:
+  - text: "I’m sorry to hear that. Want to talk about it?"
+  - text: "Bad days happen, but tomorrow is a new start."
+  - text: "I’m here to cheer you up if I can."
+
+  utter_bot_challenge:
+  - text: "I’m a bot built to chat and assist. Let’s talk!"
+  - text: "Yes, I’m a bot. But a friendly one!"
+  - text: "I’m not human, but I’m here to help however I can."
+
+  utter_ask_advice:
+  - text: "Sure, tell me what’s on your mind, and I’ll do my best to help."
+  - text: "I’m happy to offer some advice. What’s the situation?"
+  - text: "Let me know the problem, and I’ll try to assist."
+
+  utter_ask_fact:
+  - text: "Did you know octopuses have three hearts?"
+  - text: "Here’s a fun fact: Bananas are berries, but strawberries aren’t!"
+  - text: "Surprising fact: Honey never spoils."
 
   utter_iamabot:
   - text: "I am a bot, powered by Rasa."
@@ -32,3 +69,4 @@ responses:
 session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true
+
