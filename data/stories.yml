@@ -1,62 +1,42 @@
-version: "3.1"
-
+version: "3.0"
 stories:
-  - story: Greet and respond to bot challenge
+  - story: responder_experiencia
     steps:
-      - intent: greet
-      - action: utter_greet
-      - intent: bot_challenge
-      - action: utter_iamabot
+      - intent: preguntar_experiencia
+      - action: utter_experiencia
 
-  - story: Goodbye after greeting
+  - story: responder_habilidades
     steps:
-      - intent: greet
-      - action: utter_greet
-      - intent: goodbye
-      - action: utter_goodbye
+      - intent: preguntar_habilidades
+      - action: utter_habilidades
 
-  - story: User asks for a joke
+  - story: responder_proyectos
     steps:
-      - intent: ask_joke
-      - action: utter_ask_joke
+      - intent: preguntar_proyectos
+      - action: utter_proyectos
 
-  - story: User asks for the time
+  - story: responder_formacion
     steps:
-      - intent: ask_time
-      - action: utter_ask_time
+      - intent: preguntar_formacion
+      - action: utter_formacion
 
-  - story: User asks about the weather
+  # Añadidos para respuestas coloquiales:
+  - story: saludo_inicial
     steps:
-      - intent: ask_weather
-      - action: utter_ask_weather
+      - intent: saludo
+      - action: utter_saludo
 
-  - story: User requests advice
+  - story: despedida_usuario
     steps:
-      - intent: ask_advice
-      - action: utter_ask_advice
+      - intent: despedida
+      - action: utter_despedida
 
-  - story: User asks for a fact
+  - story: responder_clima
     steps:
-      - intent: ask_fact
-      - action: utter_ask_fact
+      - intent: preguntar_tiempo
+      - action: utter_tiempo
 
-  - story: User expresses happiness
+  - story: recomendaciones_entretenimiento
     steps:
-      - intent: mood_happy
-      - action: utter_mood_happy
-
-  - story: User expresses sadness
-    steps:
-      - intent: mood_sad
-      - action: utter_mood_sad
-
-  - story: Multiple intents in one session
-    steps:
-      - intent: greet
-      - action: utter_greet
-      - intent: mood_happy
-      - action: utter_mood_happy
-      - intent: ask_fact
-      - action: utter_ask_fact
-      - intent: goodbye
-      - action: utter_goodbye
+      - intent: preguntar_entretenimiento
+      - action: utter_entretenimiento

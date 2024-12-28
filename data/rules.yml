@@ -1,53 +1,21 @@
-version: "3.1"
-
+version: "3.0"
 rules:
-  - rule: Say 'I am a bot' anytime the user challenges
+  - rule: Saludar al usuario
     steps:
-      - intent: bot_challenge
-      - action: utter_iamabot
+      - intent: saludo
+      - action: utter_saludo
 
-  - rule: Greet the user
+  - rule: Despedirse
     steps:
-      - intent: greet
-      - action: utter_greet
+      - intent: despedida
+      - action: utter_despedida
 
-  - rule: Say goodbye
+  - rule: Preguntar sobre el clima
     steps:
-      - intent: goodbye
-      - action: utter_goodbye
+      - intent: preguntar_tiempo
+      - action: utter_tiempo
 
-  - rule: Respond to happy mood
+  - rule: Preguntar sobre entretenimiento
     steps:
-      - intent: mood_happy
-      - action: utter_mood_happy
-
-  - rule: Respond to sad mood
-    steps:
-      - intent: mood_sad
-      - action: utter_mood_sad
-
-  - rule: Respond to a joke request
-    steps:
-      - intent: ask_joke
-      - action: utter_ask_joke
-
-  - rule: Respond to a time inquiry
-    steps:
-      - intent: ask_time
-      - action: utter_ask_time
-
-  - rule: Respond to weather inquiry
-    steps:
-      - intent: ask_weather
-      - action: utter_ask_weather
-
-  - rule: Respond to advice request
-    steps:
-      - intent: ask_advice
-      - action: utter_ask_advice
-
-  - rule: Respond to fact request
-    steps:
-      - intent: ask_fact
-      - action: utter_ask_fact
-
+      - intent: preguntar_entretenimiento
+      - action: utter_entretenimiento

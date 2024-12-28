@@ -1,117 +1,107 @@
-version: "3.1"
-
+version: "3.0"
 nlu:
-- intent: greet
-  examples: |
-    - hey
-    - hello
-    - hi
-    - what's up?
-    - howdy
-    - hi there
-    - hey there
-    - yo
-    - good morning
-    - good evening
-    - good afternoon
-    - sup?
-    - hola
-    - greetings
-    - hiya
-    - morning
+  - intent: preguntar_experiencia
+    examples: |
+      - ¿Dónde trabajaste anteriormente?
+      - Cuéntame sobre tu experiencia laboral.
+      - ¿Cómo ha sido tu trayectoria profesional?
+      - ¿En qué empresas has trabajado?
+      - ¿Qué puestos has ocupado en el pasado?
+      - ¿En qué área te especializas?
+      - ¿Cuánto tiempo trabajaste en el sector bancario?
+      - ¿Qué responsabilidades tenías en tu último puesto?
+      - ¿Qué logros destacas de tu experiencia laboral?
+      - ¿Cómo contribuiste a los proyectos que lideraste?
 
-- intent: goodbye
-  examples: |
-    - bye
-    - goodbye
-    - see you later
-    - take care
-    - catch you later
-    - bye bye
-    - have a good one
-    - I'm off
-    - peace out
-    - see ya
-    - later
+  - intent: preguntar_habilidades
+    examples: |
+      - ¿Qué habilidades tienes?
+      - ¿Con qué herramientas trabajas?
+      - ¿Qué lenguajes de programación manejas?
+      - ¿Eres bueno trabajando con bases de datos?
+      - ¿Conoces SQL y Python?
+      - ¿Tienes experiencia en machine learning?
+      - ¿Qué software de visualización utilizas?
+      - ¿Cuáles son tus fortalezas en el análisis de datos?
+      - ¿Dominas Power BI?
+      - ¿Sabes trabajar en entornos Cloud?
 
-- intent: ask_weather
-  examples: |
-    - what's the weather like?
-    - how's the weather?
-    - is it sunny today?
-    - is it raining?
-    - do I need an umbrella?
-    - is it hot outside?
-    - tell me about the weather
-    - what's the forecast?
-    - is it cold today?
+  - intent: preguntar_proyectos
+    examples: |
+      - ¿Qué proyectos has desarrollado?
+      - ¿Puedes hablarme de un proyecto importante que hayas liderado?
+      - Cuéntame sobre tu proyecto de ciencia de datos.
+      - ¿Tienes experiencia trabajando con proyectos de machine learning?
+      - ¿En qué proyectos usaste Power BI?
+      - ¿Cuál fue tu rol en el proyecto de recomendación de restaurantes?
+      - ¿Qué aprendiste del proyecto de accidentes viales?
+      - ¿Cómo contribuiste al proyecto de Steam?
+      - ¿Qué desafíos enfrentaste en tus proyectos?
+      - ¿Cómo manejaste los datos en tus proyectos?
 
-- intent: ask_joke
-  examples: |
-    - tell me a joke
-    - make me laugh
-    - do you know any jokes?
-    - entertain me with a joke
-    - give me something funny
-    - I need a joke
-    - can you joke?
+  - intent: preguntar_formacion
+    examples: |
+      - ¿Dónde estudiaste?
+      - ¿Qué formación académica tienes?
+      - ¿Tienes alguna certificación relevante?
+      - ¿Qué estudios estás cursando actualmente?
+      - ¿Dónde hiciste el Bootcamp en Ciencia de Datos?
+      - ¿En qué universidad estudiaste Administración de Empresas?
+      - ¿Qué porcentaje de avance tienes en tu carrera de Sistemas?
+      - ¿Cuánto tiempo llevas estudiando Ciencias de la Computación?
+      - ¿Tienes alguna especialización?
+      - ¿Qué cursos adicionales has tomado?
 
-- intent: ask_time
-  examples: |
-    - what time is it?
-    - tell me the time
-    - can you give me the time?
-    - do you know what time it is?
-    - time please
-    - what's the current time?
-    - is it late?
+  # Añadido para preguntas coloquiales:
+  - intent: saludo
+    examples: |
+      - ¡Hola!
+      - ¿Cómo estás?
+      - ¡Buenos días!
+      - ¿Qué tal?
+      - ¡Hola, ¿cómo va todo?
+      - ¿Cómo te encuentras hoy?
+      - ¡Qué tal, cómo estás?
+      - ¡Qué bueno verte!
+      - ¡Hola, qué tal tu día?
+      - ¡Hey, cómo va todo!
 
-- intent: mood_happy
-  examples: |
-    - I'm feeling great
-    - I'm so happy
-    - I'm doing well
-    - I'm in a great mood
-    - life is good
-    - I'm feeling awesome
-    - today is amazing
-    - everything is going well
+  - intent: despedida
+    examples: |
+      - Adiós
+      - ¡Hasta luego!
+      - ¡Nos vemos!
+      - ¡Que tengas un buen día!
+      - ¡Cuídate!
+      - Hasta pronto
+      - ¡Hasta la próxima!
+      - ¡Chao!
+      - Nos vemos luego
+      - ¡Que estés bien!
 
-- intent: mood_sad
-  examples: |
-    - I'm feeling down
-    - I'm sad
-    - not doing great
-    - life is tough
-    - I'm not feeling well
-    - I'm in a bad mood
-    - I'm upset
-    - feeling low
-    - I've had a bad day
+  - intent: preguntar_tiempo
+    examples: |
+      - ¿Cómo está el clima hoy?
+      - ¿Hace frío hoy?
+      - ¿Está soleado hoy?
+      - ¿Qué tal el clima en Buenos Aires?
+      - ¿Hace calor hoy?
+      - ¿Va a llover mañana?
+      - ¿Cómo está el tiempo por ahí?
+      - ¿Está nublado hoy?
+      - ¿Está lloviendo?
+      - ¿Cómo está el clima hoy en la ciudad?
 
-- intent: bot_challenge
-  examples: |
-    - are you a bot?
-    - are you real?
-    - who made you?
-    - what are you?
-    - are you human?
-    - how do you work?
-    - are you alive?
-
-- intent: ask_advice
-  examples: |
-    - I need advice
-    - can you help me with something?
-    - what should I do about this?
-    - give me some advice
-    - I need help deciding
-
-- intent: ask_fact
-  examples: |
-    - tell me something interesting
-    - do you know any fun facts?
-    - give me a random fact
-    - what's a cool fact you know?
-    - surprise me with a fact
+  - intent: preguntar_entretenimiento
+    examples: |
+      - ¿Qué series me recomiendas?
+      - ¿Has visto alguna película interesante?
+      - ¿Qué música estás escuchando?
+      - ¿Tienes alguna recomendación de película?
+      - ¿Qué juegos estás jugando?
+      - ¿Te gusta ver deportes?
+      - ¿Qué series estás viendo ahora?
+      - ¿Tienes alguna película favorita?
+      - ¿Te gusta la música de los 80s?
+      - ¿Qué videojuegos te gustan?
 
